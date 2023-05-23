@@ -2,6 +2,9 @@ package com.example.klotski_model;
 
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
+import org.json.JSONObject;
+import org.json.JSONString;
+import org.json.JSONStringer;
 
 /**
  * Block of klotski board
@@ -119,7 +122,35 @@ public class Block {
     }
 
     /**
-     * Block --> string
+     * JSON --> Block
+     * ad es. {"pos_x":1, "pos_y":2,"width":1,"height":1} --> Block(Point2D(1,2), 1, 1)
+     *
+     * @return Block created from JSON
+     */
+    static public Block fromJSON(String jsonString) {
+        JSONObject json = new JSONObject(jsonString);
+        return new Block(new Point2D(json.getInt("pos_x"), json.getInt("pos_y")),
+                json.getInt("height"), json.getInt("width"));
+    }
+
+    /**
+     * Block --> JSON
+     * ad es. Point2D(1,2),1,1 --> {"pos_x":1, "pos_y":2,"width":1,"height":1}
+     *
+     * @return Block conversion to JSON
+     */
+    public String toJSON() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("pos_x", this.position.getX());
+        jsonObject.put("pos_y", this.position.getY());
+        jsonObject.put("height", this.height);
+        jsonObject.put("width", this.width);
+        return jsonObject.toString();
+    }
+
+    /**
+     * Block --> string "posx posy height width"
+     * ad es. Point2D(1,2),1,1 --> "1.0 2.0 1 1"
      *
      * @return Block conversion to string
      */
