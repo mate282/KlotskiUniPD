@@ -10,7 +10,14 @@ import org.json.*;
 public class PersistenceDataService {
 
     static  String FILES_BASEPATH = "/gameData/";
+    static String SAVEFILE_PATH = "saves/";
+    static String CONFIGFILE_PATH = "configs/";
+    static String SOLFILE_PATH = "solutions/";
+
     static  String SAVEFILE_NAME = "saving_";
+    static  String CONFIGFILE_NAME = "saving_";
+
+
     static  String DATE_FORMAT = "yyyy/MM/dd_HH:mm:ss";
 
     /**
@@ -24,7 +31,7 @@ public class PersistenceDataService {
             //generate file name for saving : filePath+baseName+saveDate
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern(DATE_FORMAT);
             LocalDateTime now = LocalDateTime.now();
-            String fileName = FILES_BASEPATH + SAVEFILE_NAME +dtf.format(now);
+            String fileName = FILES_BASEPATH + SAVEFILE_PATH+SAVEFILE_NAME +dtf.format(now);
 
             //Create file
             File file = new File(fileName);
@@ -56,7 +63,7 @@ public class PersistenceDataService {
 
       try{
           //load all file in default directory
-          File dirFile = new File(FILES_BASEPATH);
+          File dirFile = new File(FILES_BASEPATH+SAVEFILE_PATH);
           //load all files in default directory
           File[] files = dirFile.listFiles();
           //null check
@@ -76,39 +83,101 @@ public class PersistenceDataService {
       }
     }
 
+    /***
+     * Load saved game
+     * @param savingName saving data name
+     * return saved game data*/
+    public SavedGame loadGameData(String savingName) {
+      try{
+          //load all file in default directory
+          File saveFile = new File(FILES_BASEPATH + SAVEFILE_PATH + savingName);
+          Scanner reader = new Scanner(saveFile);
+          String jsonData = reader.nextLine();
+          reader.close();
+          //Load JSONObject
+          JSONObject savedGameJson = new JSONObject(jsonData);
+          SavedGame savedGame = SavedGame.fromJSON(savedGameJson);
+          return savedGame;
+      }
+      catch (IOException e)
+      {
+            return null;
+      }
+    }
 
-     public SavedGame loadGameData(String savingName) {
 
-          try{
-              //load all file in default directory
-              File saveFile = new File(FILES_BASEPATH + savingName);
-              Scanner reader = new Scanner(saveFile);
-              String jsonData = reader.nextLine();
-              reader.close();
+    /**
+     * load list of configurations available
+     * @return list of configurations' names**/
+    public List<String> loadAllConfigurations(){
+      ArrayList<String> configs = new ArrayList<String> (0);
 
-              JSONObject savedGameJson = new JSONObject(jsonData);
+      try{
+          //load all file in default directory
+          File dirFile = new File(FILES_BASEPATH+CONFIGFILE_PATH);
+          //load all files in default directory
+          File[] files = dirFile.listFiles();
+          //null check
+          if(files==null)
+              files = new File[0];
 
-              SavedGame savedGame = new SavedGame();
-              return savedGame;
+          //filer files to saving data
+          for(File f : files){
+              if(f.getName().contains(CONFIGFILE_NAME))
+                  configs.add(f.getName());
           }
-          catch (IOException e)
-          {
-                return null;
-          }
-     }
+          return configs;
+      }
+      catch (Exception e)
+      {
+          return configs;
+      }
+   }
 
-  /*
+    /**
+     * Load configuration from name
+     * @param  configName name of configuration to load
+     * @return game configuration**/
+    public BeginningConfiguration loadConfig(String configName){
+      try{
+          //load all file in default directory
+          File configFile = new File(FILES_BASEPATH + CONFIGFILE_PATH+ configName);
+          Scanner reader = new Scanner(configFile);
+          String jsonData = reader.nextLine();
+          reader.close();
+          //Load JSONObject
+          JSONObject configJSON = new JSONObject(jsonData);
+          BeginningConfiguration config = BeginningConfiguration.fromJSON(configJSON);
+          return config;
+      }
+      catch (IOException e)
+      {
+          return null;
+      }
+  }
 
-  public List<String> loadAllConfigurations(){
-        return ArrayList<String>(0);
-  }
-  public BeginningConfiguration loadConfig(String configName){
-        return null;
-  }
-  public List<Board> loadSolution(BeginningConfiguration beginConf) {
-        return ArrayList<Board>(0);
+
+    /**
+     * Load solution of specified configuration
+     * @param configuration for which to load solution **/
+    public LevelSolution loadSolution(BeginningConfiguration beginConf) {
+      try{
+          //load all file in default directory
+          File configFile = new File(FILES_BASEPATH + SOLFILE_PATH+ beginConf.getName());
+          Scanner reader = new Scanner(configFile);
+          String jsonData = reader.nextLine();
+          reader.close();
+          //Load JSONObject
+          JSONObject solutionJSON = new JSONObject(jsonData);
+          LevelSolution solution  = LevelSolution.fromJSON(solutionJSON);
+          return solution;
+      }
+      catch (IOException e)
+      {
+          return null;
+      }
   }
 
-  */
+
 
 }
