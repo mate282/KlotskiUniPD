@@ -1,0 +1,7 @@
+{
+	"pos" : [x,y],
+	"height" : h;
+	"width" : w,
+	"color" : "color",
+	"mainBlock" : "true"/"false" 
+}

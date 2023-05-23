@@ -1,0 +1,4 @@
+{
+	beginConf : config, 
+	moves : [{move1},{move2}]
+}

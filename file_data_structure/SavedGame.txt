@@ -1,0 +1,5 @@
+{
+"saveDate" : yyyy/MM/dd_HH:mm:ss,
+"gameProgress" : { gameProgress },
+"board" : { board }
+}

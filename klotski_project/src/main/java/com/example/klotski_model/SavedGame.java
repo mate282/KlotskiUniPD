@@ -1,4 +1,7 @@
 package com.example.klotski_model;
 
-public class SavedGame {
+import java.io.Serializable;
+
+public class SavedGame implements Serializable {
+
 }

@@ -1,4 +1,4 @@
 package com.example.klotski_project;
 
-public class GameController {
+public class GameViewController {
 }

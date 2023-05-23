@@ -1,0 +1,5 @@
+{
+	"height" : h,
+	"width" : w,
+	"blocks" : [{block1},{block2}]
+}
