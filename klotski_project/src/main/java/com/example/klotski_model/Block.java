@@ -139,13 +139,13 @@ public class Block {
      *
      * @return Block conversion to JSON
      */
-    public String toJSON() {
+    public JSONObject toJSON() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("pos_x", this.position.getX());
         jsonObject.put("pos_y", this.position.getY());
         jsonObject.put("height", this.height);
         jsonObject.put("width", this.width);
-        return jsonObject.toString();
+        return jsonObject;
     }
 
     /**
