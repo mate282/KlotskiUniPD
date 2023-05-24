@@ -26,6 +26,7 @@ public class Block {
     final int min_dim_block = 1;
     final int max_dim_block = 2;
     final Color def_block_color = Color.BLUE;
+    final Color def_main_block_color = Color.RED;
 
     Point2D position;   // block top left corner point
     int height;         // block height (1 or 2)
@@ -42,7 +43,8 @@ public class Block {
      */
     public Block(Point2D p, int h, int w, Color c) {
         this(p, h, w);
-        this.color = c;
+        if(!(this.mainBlock))
+            this.color = c;
     }
 
     /**
@@ -57,8 +59,10 @@ public class Block {
         this.position = p;
         this.height = h;
         this.width = w;
-        this.color = def_block_color;
         this.mainBlock = ((this.height == max_dim_block) && (this.width == max_dim_block));
+        this.color = def_block_color;
+        if(this.mainBlock)
+            this.color = def_main_block_color;
     }
 
     /**
