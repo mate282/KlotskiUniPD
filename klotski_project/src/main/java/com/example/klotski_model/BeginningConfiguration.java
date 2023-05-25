@@ -1,5 +1,6 @@
 package com.example.klotski_model;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONObject;
 import org.json.JSONString;
@@ -55,9 +56,14 @@ public class BeginningConfiguration {
      *
      * @return BeginningConfiguration created from JSON
      */
-    static public BeginningConfiguration fromJSON(String jsonString){
-        JSONObject json = new JSONObject(jsonString);
-        return new BeginningConfiguration(json.getString("name"), json.getJSONArray("blocks"));
+    static public BeginningConfiguration fromJSON(JSONObject json){
+        JSONArray blockArray = json.getJSONArray("blocks");
+        ArrayList<Block> blocks = new ArrayList<Block>(0);
+
+        for(int i = 0; i < blockArray.length();i++){
+            blocks.add(Block.fromJSON(blockArray.getJSONObject(i)));
+        }
+        return new BeginningConfiguration(json.getString("name"),blocks );
     }
     /**
      * BeginningConfiguration --> JSON
@@ -68,7 +74,7 @@ public class BeginningConfiguration {
         JSONObject jsonObject = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         for(int i = 0; i<blocks.size(); i++){
-            jsonArray.put(blocks.get(i).toString());
+            jsonArray.put(blocks.get(i).toJSON());
         }
         jsonObject.put("name", this.name);
         jsonObject.put("blocks", jsonArray);
