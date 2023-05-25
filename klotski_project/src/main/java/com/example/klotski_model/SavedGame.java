@@ -7,8 +7,7 @@ public class SavedGame {
         return savedJSON;
     }
 
-    static public SavedGame fromJSON(JSONObject jsonObject)
-    {
+    static public SavedGame fromJSON(JSONObject jsonObject) {
         return new SavedGame();
     }
 }

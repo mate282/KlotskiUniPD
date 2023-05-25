@@ -25,7 +25,7 @@ public class PersistenceDataService {
      * @param gameToSave game data to save
      * @return save result
      * **/
-    public boolean saveGameData(SavedGame gameToSave) {
+    public static boolean saveGameData(SavedGame gameToSave) {
 
         try{
             //generate file name for saving : filePath+baseName+saveDate
@@ -58,7 +58,7 @@ public class PersistenceDataService {
      * If there is no save return empty list
      * @return list of savings name.
      * **/
-    public List<String> loadAllGameData(){
+    public static List<String> loadAllGameData(){
       ArrayList<String> savings = new ArrayList<String> (0);
 
       try{
@@ -87,7 +87,7 @@ public class PersistenceDataService {
      * Load saved game
      * @param savingName saving data name
      * return saved game data*/
-    public SavedGame loadGameData(String savingName) {
+    public static SavedGame loadGameData(String savingName) {
       try{
           //load all file in default directory
           File saveFile = new File(FILES_BASEPATH + SAVEFILE_PATH + savingName);
@@ -109,7 +109,7 @@ public class PersistenceDataService {
     /**
      * load list of configurations available
      * @return list of configurations' names**/
-    public List<String> loadAllConfigurations(){
+    public static List<String> loadAllConfigurations(){
       ArrayList<String> configs = new ArrayList<String> (0);
 
       try{
@@ -138,7 +138,7 @@ public class PersistenceDataService {
      * Load configuration from name
      * @param  configName name of configuration to load
      * @return game configuration**/
-    public BeginningConfiguration loadConfig(String configName){
+    public static BeginningConfiguration loadConfig(String configName){
       try{
           //load all file in default directory
           File configFile = new File(FILES_BASEPATH + CONFIGFILE_PATH+ configName);
@@ -160,7 +160,7 @@ public class PersistenceDataService {
     /**
      * Load solution of specified configuration
      * @param beginConf configuration for which to load solution **/
-    public LevelSolution loadSolution(BeginningConfiguration beginConf) {
+    public static LevelSolution loadSolution(BeginningConfiguration beginConf) {
       try{
           //load all file in default directory
           File configFile = new File(FILES_BASEPATH + SOLFILE_PATH+ beginConf.getName());

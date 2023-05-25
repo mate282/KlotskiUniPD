@@ -14,10 +14,18 @@ public class Game {
         return gameStarted;
     }
 
+    public Board getBoard(){
+        return board;
+    }
+
+    public GameProgress getProgress(){
+        return progress;
+    }
+
     public boolean startGame(BeginningConfiguration config, LevelSolution solution){
         progress = new GameProgress(config);
         board = new Board(BOARD_HEIGHT,BOARD_WIDTH,config.getBlocks());
-        helper = new Helper(config,solution);
+        helper = new NextBestMove(config,solution);
         return false;
     }
 
