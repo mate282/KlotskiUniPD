@@ -30,9 +30,9 @@ public class Game {
     }
 
     public boolean loadGame(SavedGame saving, LevelSolution solution){
-        progress = saving.getProgress();
-        board = saving.getBoard();
-        helper = new Helper(solution);
+        progress = saving.getGameProgress();
+        board = saving.getLastBoard();
+        //helper = new Helper(solution);
         return false;
     }
 
@@ -43,31 +43,32 @@ public class Game {
 
     public boolean resetGame() {
         if(progress.resetProgress()) {
-            board = new Board(BOARD_HEIGHT,BOARD_WIDTH,progress.getBeginConf());
+            board = new Board(BOARD_HEIGHT,BOARD_WIDTH,progress.getBeginConf().getBlocks());
             return true;
         }
         return false;
     }
 
-    public boolean getHelp(){
-        Move nextMove = helper.suggetMove(board);
-        return makeMove(nextMove);
-    }
+    //public boolean getHelp(){
+    //    Move nextMove = helper.suggetMove(board);
+    //    return makeMove(nextMove);
+    //}
 
-    public boolean makeMove(Move move){
-        if(board.move(move)){
-            progress.addMove(move);
-            return true;
-        }
-        return false;
-    }
-    public boolean undoMove(){
-        Move lastMove = progress.undoMove();
-        if(lastMove!=null){
-            Move invertedMove = new Move(lastMove.getBlock(), lastMove.getDest(), lastMove.getStart());
-            return board.move(invertedMove);
-        }
-        return false;
-    }
+    //public boolean makeMove(Move move){
+    //    if(board.move(move)){
+    //        progress.addMove(move);
+    //        return true;
+    //    }
+    //    return false;
+    //}
+
+    //public boolean undoMove(){
+    //    Move lastMove = progress.undoMove();
+    //    if(lastMove!=null){
+    //        Move invertedMove = new Move(lastMove.getBlock(), lastMove.getDest(), lastMove.getStart());
+    //        return board.move(invertedMove);
+    //    }
+    //    return false;
+    //}
 
 }

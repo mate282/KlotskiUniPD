@@ -2,6 +2,8 @@
 package com.example.klotski_model;
 
 import org.json.JSONObject;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class SavedGame {
@@ -38,7 +40,7 @@ public class SavedGame {
      *
      * @return last board
      */
-    public Board getLastboard(){
+    public Board getLastBoard(){
         return this.lastboard;
     }
 
@@ -66,8 +68,9 @@ public class SavedGame {
      * @return SavedGame created from JSON
      */
     static public SavedGame fromJSON(JSONObject jsonObject) {
-        JSONObject json = new JSONObject(jsonString);
-        return new SavedGame(json.getObject("saveDate"), json.getObject("gameProgress"),json.getObject("board"));
+        SavedGame savedGame = new SavedGame(Board.fromJSON(jsonObject.getJSONObject("board")),GameProgress.fromJSON(jsonObject.getJSONObject("gameProgress")));
+        savedGame.gameDate = (LocalDateTime)jsonObject.get("saveDate");
+        return savedGame;
     }
 
     /**
@@ -77,9 +80,9 @@ public class SavedGame {
      */
     public JSONObject toJSON(){
         JSONObject savedJSON = new JSONObject();
-        jsonObject.put("saveDate", this.gameDate);
-        jsonObject.put("gameProgress", this.gameData);
-        jsonObject.put("board", this.lastboard);
+        savedJSON.put("saveDate", this.gameDate);
+        savedJSON.put("gameProgress", this.gameData.toJSON());
+        savedJSON.put("board", this.lastboard.toJSON());
         return savedJSON;
     }
 

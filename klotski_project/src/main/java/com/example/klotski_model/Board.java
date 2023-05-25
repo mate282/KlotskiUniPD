@@ -2,8 +2,10 @@ package com.example.klotski_model;
 
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -56,21 +58,32 @@ public class Board {
      *
      * @return Board created from JSON
      */
-    //static public Board fromJSON(String jsonString) {
-    //    JSONObject json = new JSONObject(jsonString);
-    //    return new Board(json.getInt("height"), json.getInt("width"), );
-    //}
+    static public Board fromJSON(JSONObject jsonObject) {
+
+        JSONArray jsonBlocks = jsonObject.getJSONArray("blocks");
+        ArrayList<Block> blocks = new ArrayList<Block>(0);
+        for(int i = 0; i < jsonBlocks.length(); i++){
+            blocks.add(Block.fromJSON(jsonBlocks.getJSONObject(i)));
+        }
+       return new Board(jsonObject.getInt("height"), jsonObject.getInt("width"),blocks);
+    }
 
     /**
      * Board --> JSON
      *
      * @return Board conversion to JSON
      */
-    //public JSONObject toJSON() {
-    //    JSONObject jsonObject = new JSONObject();
-    //    jsonObject.put("height", this.height);
-    //    jsonObject.put("width", this.width);
-    //    jsonObject.put("blocks", this.blocks);
-    //    return jsonObject;
-    //}
+    public JSONObject toJSON() {
+
+        JSONArray jsonBlocks = new JSONArray();
+        for(Block b : blocks){
+            jsonBlocks.put(b.toJSON());
+        }
+
+       JSONObject jsonObject = new JSONObject();
+       jsonObject.put("height", this.height);
+       jsonObject.put("width", this.width);
+       jsonObject.put("blocks", jsonBlocks);
+       return jsonObject;
+    }
 }
