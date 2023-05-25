@@ -1,6 +1,7 @@
 package com.example.klotski_model;
 
 import javafx.geometry.Point2D;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -62,23 +63,25 @@ public class GameProgress {
 
     public JSONObject toJSON(){
         JSONObject jsonObject=new JSONObject();
-        ArrayList<JSONObject> jsonMoves=new ArrayList<JSONObject>(0);
-        for(Move m:moves){
-            jsonMoves.add(m.toJSON());
+        JSONArray jsonMoves= new JSONArray();
+        for(int i = 0; i<moves.size(); i++){
+            jsonMoves.put(moves.get(i).toJSON());
         }
         jsonObject.put("conf",configuration.toJSON());
         jsonObject.put("moves",jsonMoves);
         return jsonObject;
     }
 
-    public static Move fromJSON(JSONObject jsonObject){
-       BeginningConfiguration b=BeginningConfiguration.fromJSON(jsonObject.getJSONObject("conf"));
-        double start_x=jsonObject.getDouble("start_x");
-        double start_y=jsonObject.getDouble("start_y");
-        double end_x=jsonObject.getDouble("end_x");
-        double end_y=jsonObject.getDouble("end_y");
-        Point2D start=new Point2D(start_x,start_y);
-        Point2D end=new Point2D(end_x,end_y);
-        return new Move(b,start,end);
+    public static GameProgress fromJSON(JSONObject jsonObject) {
+        BeginningConfiguration b = BeginningConfiguration.fromJSON(jsonObject.getJSONObject("conf"));
+        JSONArray moveArray = jsonObject.getJSONArray("moves");
+        ArrayList<Move> moves = new ArrayList<Move>(0);
+
+        for (int i = 0; i < moveArray.length(); i++) {
+            moves.add(Move.fromJSON(moveArray.getJSONObject(i)));
+        }
+        GameProgress progress=new GameProgress(b);
+        progress.moves=moves;
+        return progress;
     }
 }
