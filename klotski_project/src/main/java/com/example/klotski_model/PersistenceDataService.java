@@ -9,16 +9,16 @@ import org.json.*;
 
 public class PersistenceDataService {
 
-    static  String FILES_BASEPATH = "/gameData/";
-    static String SAVEFILE_PATH = "saves/";
-    static String CONFIGFILE_PATH = "configs/";
-    static String SOLFILE_PATH = "solutions/";
+    private static final String FILES_BASEPATH = "/gameData/";
+    private static final String SAVEFILE_PATH = "saves/";
+    private static final String CONFIGFILE_PATH = "configs/";
+    private static final String SOLFILE_PATH = "solutions/";
 
-    static  String SAVEFILE_NAME = "saving_";
-    static  String CONFIGFILE_NAME = "saving_";
+    private static final String SAVEFILE_NAME = "saving_";
+    private static final String CONFIGFILE_NAME = "saving_";
 
 
-    static  String DATE_FORMAT = "yyyy/MM/dd_HH:mm:ss";
+    private static final String DATE_FORMAT = "yyyy/MM/dd_HH:mm:ss";
 
     /**
      * Save game data to persistent location.
@@ -159,7 +159,7 @@ public class PersistenceDataService {
 
     /**
      * Load solution of specified configuration
-     * @param configuration for which to load solution **/
+     * @param beginConf configuration for which to load solution **/
     public LevelSolution loadSolution(BeginningConfiguration beginConf) {
       try{
           //load all file in default directory

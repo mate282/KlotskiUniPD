@@ -1,10 +1,10 @@
-package com.example.klotski_project;
+package com.example.klotski_view;
 
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HomeViewController {
+public class HomeView {
 
     @FXML
     private Label welcomeText;
