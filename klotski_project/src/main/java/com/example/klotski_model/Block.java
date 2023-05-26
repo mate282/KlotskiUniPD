@@ -131,8 +131,7 @@ public class Block {
      *
      * @return Block created from JSON
      */
-    static public Block fromJSON(String jsonString) {
-        JSONObject json = new JSONObject(jsonString);
+    static public Block fromJSON(JSONObject json) {
         return new Block(new Point2D(json.getInt("pos_x"), json.getInt("pos_y")),
                 json.getInt("height"), json.getInt("width"));
     }

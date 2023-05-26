@@ -2,9 +2,13 @@ package com.example.klotski_model;
 
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Board of some blocks
@@ -24,7 +28,7 @@ public class Board {
      * @param w board horizontal width
      */
     public Board(int h, int w, List<Block> b) {
-        if (w < min_height_block || h < min_width_block || w > max_height_block || h > max_width_block)
+        if (h < min_height_block || w < min_width_block || h > max_height_block || w > max_width_block)
             throw new IllegalArgumentException("Board constructor values are wrong");
         this.height = h;
         this.width = w;
@@ -42,6 +46,7 @@ public class Board {
      * @return this board's height
      */
     public int getHeight() { return this.height; }
+
     /**
      * Getter list of blocks
      *
@@ -56,21 +61,39 @@ public class Board {
      *
      * @return Board created from JSON
      */
-    //static public Board fromJSON(String jsonString) {
-    //    JSONObject json = new JSONObject(jsonString);
-    //    return new Board(json.getInt("height"), json.getInt("width"), );
-    //}
+    static public Board fromJSON(JSONObject jsonObj) {
+        JSONArray ja_data = jsonObj.getJSONArray("blocks");
+        List<Block> bl = new ArrayList<>();
+        for(int i=0; i<jsonObj.length(); i++)
+        {
+            bl.add(Block.fromJSON(ja_data.getJSONObject(i)));
+        }
+        return new Board(jsonObj.getInt("height"), jsonObj.getInt("width"), bl);
+    }
 
     /**
      * Board --> JSON
+     * {"blocks":[
+     * {"pos_y":2,"pos_x":1,"width":1,"height":1},
+     * {"pos_y":2,"pos_x":1,"width":2,"height":2},
+     * {"pos_y":2,"pos_x":1,"width":2,"height":1}],
+     * "width":4,"height":5}
      *
      * @return Board conversion to JSON
      */
-    //public JSONObject toJSON() {
-    //    JSONObject jsonObject = new JSONObject();
-    //    jsonObject.put("height", this.height);
-    //    jsonObject.put("width", this.width);
-    //    jsonObject.put("blocks", this.blocks);
-    //    return jsonObject;
-    //}
+    public JSONObject toJSON() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("height", this.height);
+        jsonObject.put("width", this.width);
+        JSONArray array = new JSONArray();
+        for(int i = 0; i < this.blocks.size(); i++) {
+            array.put(this.blocks.get(i).toJSON());
+        }
+        try {
+            jsonObject.put("blocks", array);
+        } catch(JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
 }
