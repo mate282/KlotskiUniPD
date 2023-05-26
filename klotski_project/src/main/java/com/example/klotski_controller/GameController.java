@@ -7,21 +7,27 @@ import com.example.klotski_view.HomeView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class GameController {
+
+    private static GameController gameController;
+
+    public static GameController getInstance(){
+        if(gameController == null){
+            gameController = new GameController();
+        }
+        return gameController;
+    }
+
+
+
     Game game;
     BeginningConfiguration config;
 
-    HomeView homeView;
-    GameView gameView;
-    Stage stage;
 
-
-    public GameController(Stage stage) {
+    public GameController() {
         game = new Game();
-        this.stage = stage;
     }
 
 
@@ -42,23 +48,8 @@ public class GameController {
     }
 
 
-    public void loadHomeView() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(KlotskiApp.class.getResource("Views/home-view.fxml"));
-        homeView = fxmlLoader.getController();
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        stage.setTitle("Klotski - Menu");
-        stage.setScene(scene);
-        stage.show();
 
 
-    }
 
-    public void loadGameView() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(KlotskiApp.class.getResource("Views/game-view.fxml"));
-        gameView = fxmlLoader.getController();
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        stage.setTitle("Klotski - Game");
-        stage.setScene(scene);
-        stage.show();
-    }
+
 }

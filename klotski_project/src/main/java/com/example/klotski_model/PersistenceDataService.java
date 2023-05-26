@@ -17,6 +17,8 @@ public class PersistenceDataService {
     private static final String SAVEFILE_NAME = "saving_";
     private static final String CONFIGFILE_NAME = "saving_";
 
+    private static final String FILE_EXT = ".json";
+
 
     private static final String DATE_FORMAT = "yyyy/MM/dd_HH:mm:ss";
 
@@ -141,7 +143,8 @@ public class PersistenceDataService {
     public static BeginningConfiguration loadConfig(String configName){
       try{
           //load all file in default directory
-          File configFile = new File(FILES_BASEPATH + CONFIGFILE_PATH+ configName);
+
+          File configFile = new File("D:/Git/KlotskiUniPD/klotski_project/data"+FILES_BASEPATH + CONFIGFILE_PATH+ configName+FILE_EXT);
           Scanner reader = new Scanner(configFile);
           String jsonData = reader.nextLine();
           reader.close();

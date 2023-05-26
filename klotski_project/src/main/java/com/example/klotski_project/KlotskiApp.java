@@ -11,8 +11,11 @@ import java.io.IOException;
 public class KlotskiApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        GameController controller = new GameController(stage);
-        controller.loadHomeView();
+        FXMLLoader fxmlLoader = new FXMLLoader(KlotskiApp.class.getResource("Views/home-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        stage.setTitle("Klotski - Menu");
+        stage.setScene(scene);
+        stage.show();
     }
 
     public static void main(String[] args) {
