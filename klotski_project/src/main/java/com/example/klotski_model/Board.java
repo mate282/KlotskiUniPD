@@ -3,7 +3,6 @@ package com.example.klotski_model;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -61,14 +60,14 @@ public class Board {
      *
      * @return Board created from JSON
      */
-    static public Board fromJSON(JSONObject jsonObj) {
-        JSONArray ja_data = jsonObj.getJSONArray("blocks");
-        List<Block> bl = new ArrayList<>();
-        for(int i=0; i<jsonObj.length(); i++)
-        {
-            bl.add(Block.fromJSON(ja_data.getJSONObject(i)));
+    static public Board fromJSON(JSONObject jsonObject) {
+
+        JSONArray jsonBlocks = jsonObject.getJSONArray("blocks");
+        ArrayList<Block> blocks = new ArrayList<Block>(0);
+        for(int i = 0; i < jsonBlocks.length(); i++){
+            blocks.add(Block.fromJSON(jsonBlocks.getJSONObject(i)));
         }
-        return new Board(jsonObj.getInt("height"), jsonObj.getInt("width"), bl);
+       return new Board(jsonObject.getInt("height"), jsonObject.getInt("width"),blocks);
     }
 
     /**
@@ -82,18 +81,15 @@ public class Board {
      * @return Board conversion to JSON
      */
     public JSONObject toJSON() {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("height", this.height);
-        jsonObject.put("width", this.width);
-        JSONArray array = new JSONArray();
-        for(int i = 0; i < this.blocks.size(); i++) {
-            array.put(this.blocks.get(i).toJSON());
+        JSONArray jsonBlocks = new JSONArray();
+        for(Block b : blocks){
+            jsonBlocks.put(b.toJSON());
         }
-        try {
-            jsonObject.put("blocks", array);
-        } catch(JSONException e) {
-            e.printStackTrace();
-        }
-        return jsonObject;
+
+       JSONObject jsonObject = new JSONObject();
+       jsonObject.put("height", this.height);
+       jsonObject.put("width", this.width);
+       jsonObject.put("blocks", jsonBlocks);
+       return jsonObject;
     }
 }
