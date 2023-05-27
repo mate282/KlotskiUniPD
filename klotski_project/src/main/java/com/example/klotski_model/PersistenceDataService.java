@@ -145,8 +145,9 @@ public class PersistenceDataService {
     public static BeginningConfiguration loadConfig(String configName){
       try{
           //load all file in default directory
-          //File configFile = new File(KlotskiApp.class.getResource("Configurations/"+configName+FILE_EXT).getPath());
-          File configFile = new File("D:/Git/KlotskiUniPD/klotski_project/data"+FILES_BASEPATH + CONFIGFILE_PATH+ configName+FILE_EXT);
+          String filePath = KlotskiApp.class.getResource("/Configurations/"+configName+FILE_EXT).getFile();
+          File configFile = new File(filePath);
+          //File configFile = new File("D:/Git/KlotskiUniPD/klotski_project/data"+FILES_BASEPATH + CONFIGFILE_PATH+ configName+FILE_EXT);
           Scanner reader = new Scanner(configFile);
           String jsonData = reader.nextLine();
           reader.close();
