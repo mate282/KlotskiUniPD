@@ -35,7 +35,6 @@ public class GameController {
         if (!game.isGameStarted() && config!=null) {
             LevelSolution sol = PersistenceDataService.loadSolution(config);
             if(game.startGame(config,sol)){
-                notify();
                 return true;
             }
         }
@@ -47,6 +46,12 @@ public class GameController {
         return config!=null;
     }
 
+    public Board getActualBoard(){
+        if(game.isGameStarted()){
+            return game.getBoard();
+        }
+        return null;
+    }
 
 
 
