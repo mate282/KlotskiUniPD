@@ -26,7 +26,8 @@ public class Game {
         progress = new GameProgress(config);
         board = new Board(BOARD_HEIGHT,BOARD_WIDTH,config.getBlocks());
         helper = new NextBestMove(config,solution);
-        return false;
+        gameStarted = true;
+        return gameStarted;
     }
 
     public boolean loadGame(SavedGame saving, LevelSolution solution){

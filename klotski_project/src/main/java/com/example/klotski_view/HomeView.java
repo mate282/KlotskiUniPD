@@ -33,7 +33,7 @@ public class HomeView {
 
         if(gameController.chooseConfiguration("level1")){
             if(gameController.startGame()){
-                loadGameView((Stage)btn.getScene().getWindow());
+                KlotskiApp.navigateToGame((Stage)btn.getScene().getWindow());
             }
         }
 
@@ -41,14 +41,7 @@ public class HomeView {
     }
 
 
-    private void loadGameView(Stage stage) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(KlotskiApp.class.getResource("Views/game-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        stage.setTitle("Klotski - Game");
-        stage.setScene(scene);
-        stage.show();
-    }
 
 
 }

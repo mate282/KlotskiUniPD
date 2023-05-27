@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import com.example.klotski_project.KlotskiApp;
 import org.json.*;
 
 public class PersistenceDataService {
@@ -143,8 +145,9 @@ public class PersistenceDataService {
     public static BeginningConfiguration loadConfig(String configName){
       try{
           //load all file in default directory
-
-          File configFile = new File("D:/Git/KlotskiUniPD/klotski_project/data"+FILES_BASEPATH + CONFIGFILE_PATH+ configName+FILE_EXT);
+          String filePath = KlotskiApp.class.getResource("/Configurations/"+configName+FILE_EXT).getFile();
+          File configFile = new File(filePath);
+          //File configFile = new File("D:/Git/KlotskiUniPD/klotski_project/data"+FILES_BASEPATH + CONFIGFILE_PATH+ configName+FILE_EXT);
           Scanner reader = new Scanner(configFile);
           String jsonData = reader.nextLine();
           reader.close();

@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
 
-<AnchorPane prefHeight="471.0" prefWidth="438.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.klotski_view.GameView">
+<AnchorPane prefHeight="499.0" prefWidth="702.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.klotski_view.GameView">
    <children>
       <Button fx:id="btn" layoutX="20.0" layoutY="348.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="Back" />
-      <GridPane layoutX="121.0" layoutY="3.0" prefHeight="450.0" prefWidth="302.0" style="-fx-background-color: #CCCCCC;">
+      <GridPane fx:id="gridBoard" alignment="CENTER" layoutX="248.0" layoutY="24.0" prefHeight="450.0" prefWidth="302.0" style="-fx-background-color: #CCCCCC;">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="10.0" prefWidth="75.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.2" minWidth="10.0" prefWidth="74.2" />
@@ -23,12 +21,6 @@
             <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
         </rowConstraints>
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="70.0" stroke="BLACK" strokeType="INSIDE" width="70.0">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin></Rectangle>
-         </children>
       </GridPane>
    </children>
 </AnchorPane>
