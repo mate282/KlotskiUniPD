@@ -23,16 +23,16 @@ import org.json.JSONStringer;
  *      width = 1                            width = 2
  */
 public class Block {
-    final int min_dim_block = 1;
-    final int max_dim_block = 2;
-    final Color def_block_color = Color.BLUE;
-    final Color def_main_block_color = Color.RED;
+    private final int min_dim_block = 1;
+    private final int max_dim_block = 2;
+    private final Color def_block_color = Color.BLUE;
+    private final Color def_main_block_color = Color.RED;
 
-    Point2D position;   // block top left corner point
-    int height;         // block height (1 or 2)
-    int width;          // block width  (1 or 2)
-    Color color;        // block color (black, blue, cyan...)
-    boolean mainBlock;  // true is the main block, false otherwise
+    private Point2D position;   // block top left corner point
+    private int height;         // block height (1 or 2)
+    private int width;          // block width  (1 or 2)
+    private Color color;        // block color (black, blue, cyan...)
+    private boolean mainBlock;  // true is the main block, false otherwise
 
     /**
      * Constructor
@@ -113,6 +113,24 @@ public class Block {
     }
 
     /**
+     * Getter dimension (1, 2, 4)
+     *
+     * @return block dimension
+     */
+    public int getDim() {
+        return (this.width * this.height);
+    }
+
+    /**
+     * Returns if block is vertical or not (only if dimension block = 2)
+     *
+     * @return
+     * - true = it is vertical
+     * - false = it is horizontal
+     */
+    public boolean isVertical() { return (this.height == 2); }
+
+    /**
      * Setter top left corner point position
      *
      * @param p top left corner point
@@ -129,11 +147,22 @@ public class Block {
      * JSON --> Block
      * ad es. {"pos_x":1, "pos_y":2,"width":1,"height":1} --> Block(Point2D(1,2), 1, 1)
      *
-     * @return Block created from JSON
+     * @param json object with block data
+     *
+     * @return
+     * - null = wrong data input, no block was created
+     * - otherwise block created from JSON
      */
     static public Block fromJSON(JSONObject json) {
-        return new Block(new Point2D(json.getInt("pos_x"), json.getInt("pos_y")),
-                json.getInt("height"), json.getInt("width"));
+        Block b = null;
+        try {
+            b = new Block(new Point2D(json.getInt("pos_x"), json.getInt("pos_y")),
+                    json.getInt("height"), json.getInt("width"));
+        }
+        catch (Exception e) {
+            throw new IllegalArgumentException("Block constructor values are wrong");
+        }
+        return b;
     }
 
     /**
