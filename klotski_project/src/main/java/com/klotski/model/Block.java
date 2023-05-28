@@ -24,7 +24,7 @@ public class Block {
     private final int min_dim_block = 1;
     private final int max_dim_block = 2;
     private final Color def_block_color = Color.LIGHTGREEN;
-    private final Color def_main_block_color = Color.GREEN;
+    private final Color def_main_block_color = Color.RED;
 
     private Point2D position;   // block top left corner point
     private int height;         // block height (1 or 2)

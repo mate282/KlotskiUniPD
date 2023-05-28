@@ -22,9 +22,11 @@ public class KlotskiApp extends Application {
 
     public static void navigateToHome(Stage stage)throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(KlotskiApp.class.getResource("Views/Home/home-view.fxml"));
-        String mainCss = KlotskiApp.class.getResource("Views/Home/Style/main-style.css").toExternalForm();
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        //Load CSS
+        String mainCss = KlotskiApp.class.getResource("Views/Home/Style/main-style.css").toExternalForm();
         scene.getStylesheets().add(mainCss);
+
         stage.setTitle("Klotski - Menu");
         stage.setScene(scene);
         stage.resizableProperty().set(false);
@@ -32,9 +34,9 @@ public class KlotskiApp extends Application {
     }
     public static void navigateToGame(Stage stage)throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(KlotskiApp.class.getResource("Views/Game/game-view.fxml"));
-        String mainCss = KlotskiApp.class.getResource("Views/Home/Style/main-style.css").toExternalForm();
         Scene scene = new Scene(fxmlLoader.load(), GameView.WINDOW_WIDTH, GameView.WINDOW_HEIGHT);
-
+        //Load CSS
+        String mainCss = KlotskiApp.class.getResource("Views/Home/Style/main-style.css").toExternalForm();
         scene.getStylesheets().add(mainCss);
         stage.setTitle("Klotski - Menu");
         stage.setScene(scene);
