@@ -4,11 +4,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="364.0" prefWidth="406.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.klotski.view.HomeView">
+<VBox alignment="CENTER" prefHeight="364.0" prefWidth="406.0" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.klotski.view.HomeView">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
 
-    <Button fx:id="btn" onAction="#onStartButtonClick" text="Start" />
+    <Button fx:id="btnStart" onAction="#onStartButtonClick" prefHeight="40.0" prefWidth="240.0" text="Start Game" />
+   <Button fx:id="btnChoose" mnemonicParsing="false" onAction="#onChooseConfigButtonClick" prefHeight="40.0" prefWidth="240.0" text="Choose Configuration" />
+   <Button fx:id="btnLoad" mnemonicParsing="false" onAction="#onLoadGameButtonClick" prefHeight="40.0" prefWidth="240.0" text="Load Game" />
+   <ComboBox fx:id="cmbChoose" onAction="#onChooseConfigurationComboBoxClick" prefHeight="26.0" prefWidth="239.0" visible="false" />
+   <ComboBox fx:id="cmbLoad" prefHeight="26.0" prefWidth="239.0" visible="false" />
 </VBox>
