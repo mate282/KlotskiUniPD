@@ -157,7 +157,8 @@ public class Block {
         Block b = null;
         try {
             b = new Block(new Point2D(json.getInt("pos_x"), json.getInt("pos_y")),
-                    json.getInt("height"), json.getInt("width"));
+                    json.getInt("height"), json.getInt("width"),Color.valueOf(json.getString("color")));
+
         }
         catch (Exception e) {
             throw new IllegalArgumentException("Block constructor values are wrong");
@@ -177,6 +178,7 @@ public class Block {
         jsonObject.put("pos_y", this.position.getY());
         jsonObject.put("height", this.height);
         jsonObject.put("width", this.width);
+        jsonObject.put("color", this.color.toString());
         return jsonObject;
     }
 

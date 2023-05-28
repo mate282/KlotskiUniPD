@@ -6,7 +6,6 @@ import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import org.json.JSONObject;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class TestJSON {
@@ -35,6 +34,7 @@ public class TestJSON {
         blocks.add(new Block(new Point2D(1,0), 2,2, Color.BLACK));
 
         BeginningConfiguration configuration = new BeginningConfiguration("level1",blocks);
+        String json = configuration.toJSON().toString();
 
         BeginningConfiguration loaded = PersistenceDataService.loadConfig("level1");
         configuration.getName();

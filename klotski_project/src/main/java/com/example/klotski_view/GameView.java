@@ -5,6 +5,7 @@ import com.example.klotski_model.Block;
 import com.example.klotski_model.Board;
 import com.example.klotski_model.Game;
 import com.example.klotski_project.KlotskiApp;
+import javafx.css.converter.PaintConverter;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -68,7 +69,9 @@ public class GameView {
         Rectangle rect = new Rectangle();
         rect.setWidth(b.getWidth()*MIN_BLOCK_DIM);
         rect.setHeight(b.getHeight()*MIN_BLOCK_DIM);
-        rect.fillProperty().set(Paint.valueOf(b.getColor().toString()));
+
+
+        rect.fillProperty().set(b.getColor());
 
         GridPane.setValignment(rect, VPos.TOP);
         GridPane.setHalignment(rect, HPos.LEFT);
