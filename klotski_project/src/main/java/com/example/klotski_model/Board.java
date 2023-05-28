@@ -11,6 +11,20 @@ import java.util.ListIterator;
 
 /**
  * Board of some blocks
+ *
+ *                  width
+ *   xy
+ *   00 ---- 10 ---- 20 ---- 30 ----
+ *   |       |       |       |      |
+ *   01 ---- 11 ---- 21 ---- 31 ----
+ *   |       |       |       |      |
+ *   02 ---- 12 ---- 22 ---- 32 ----
+ *   |       |       |       |      |   height
+ *   03 ---- 13 ---- 23 ---- 33 ----
+ *   |       |       |       |      |
+ *   04 ---- 14 ---- 24 ---- 34 ----
+ *   |       |       |       |      |
+ *   -------------------------------
  */
 public class Board {
     private final int min_height_block = 5;
@@ -44,6 +58,9 @@ public class Board {
      * - false = otherwise
      */
     private boolean routeIsValid(List<Point2D> pl) {
+        if (pl.isEmpty()) {
+            return false;
+        }
         for(Point2D p : pl) {
             if(!isInBoard(p)) {
                 return false;
