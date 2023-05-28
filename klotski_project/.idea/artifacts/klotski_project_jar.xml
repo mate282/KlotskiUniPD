@@ -3,25 +3,15 @@
     <output-path>$PROJECT_DIR$/out/artifacts/klotski_project_jar</output-path>
     <root id="archive" name="klotski_project.jar">
       <element id="module-output" name="klotski_project" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/20/javafx-graphics-20-win.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/20/javafx-graphics-20.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/20/javafx-base-20-win.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/controlsfx/controlsfx/11.1.2/controlsfx-11.1.2.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/20/javafx-controls-20.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/dlsc/formsfx/formsfx-core/11.6.0/formsfx-core-11.6.0.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/json/json/20230227/json-20230227.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/20/javafx-base-20.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/20/javafx-fxml-20.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/20/javafx-fxml-20-win.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/javafx-sdk-20.0.1/lib/javafx-swt.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/javafx-sdk-20.0.1/lib/javafx.web.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/javafx-sdk-20.0.1/lib/javafx.base.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/javafx-sdk-20.0.1/lib/javafx.fxml.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/javafx-sdk-20.0.1/lib/javafx.media.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/javafx-sdk-20.0.1/lib/javafx.swing.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/javafx-sdk-20.0.1/lib/javafx.controls.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/javafx-sdk-20.0.1/lib/javafx.graphics.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/20/javafx-controls-20.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/20/javafx-graphics-20-win.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/20/javafx-controls-20-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/20/javafx-base-20-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/20/javafx-graphics-20.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/20/javafx-fxml-20-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/json/json/20230227/json-20230227.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
