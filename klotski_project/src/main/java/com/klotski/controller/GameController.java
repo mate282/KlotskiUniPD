@@ -2,6 +2,8 @@ package com.klotski.controller;
 
 import com.klotski.model.*;
 
+import java.util.List;
+
 public class GameController {
 
     private static GameController gameController;
@@ -39,6 +41,9 @@ public class GameController {
         return config!=null;
     }
 
+    public List<String> loadAllConfigurations(){
+        return PersistenceDataService.loadAllConfigurations();
+    }
     public Board getActualBoard(){
         if(game.isGameStarted()){
             return game.getBoard();
