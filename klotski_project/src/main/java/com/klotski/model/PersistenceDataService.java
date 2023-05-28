@@ -14,10 +14,10 @@ import java.util.Scanner;
 
 public class PersistenceDataService {
 
-    private static final String FILES_BASEPATH = "/GameData/";
-    private static final String SAVEFILE_PATH = "saves/";
+    private static final String FILES_BASEPATH = "C:/GameData/";
+    private static final String SAVEFILE_PATH = "Saves/";
     private static final String CONFIGFILE_PATH = "Configurations/";
-    private static final String SOLFILE_PATH = "solutions/";
+    private static final String SOLFILE_PATH = "Solutions/";
 
     private static final String SAVEFILE_NAME = "saving_";
     private static final String CONFIGFILE_NAME = "saving_";
@@ -25,7 +25,7 @@ public class PersistenceDataService {
     private static final String FILE_EXT = ".json";
 
 
-    private static final String DATE_FORMAT = "yyyy/MM/dd_HH:mm:ss";
+    private static final String DATE_FORMAT = "yyyyMMdd_HHmmss";
 
     /**
      * Save game data to persistent location.
@@ -38,7 +38,7 @@ public class PersistenceDataService {
             //generate file name for saving : filePath+baseName+saveDate
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern(DATE_FORMAT);
             LocalDateTime now = LocalDateTime.now();
-            String fileName = FILES_BASEPATH + SAVEFILE_PATH+SAVEFILE_NAME +dtf.format(now);
+            String fileName = FILES_BASEPATH + SAVEFILE_PATH+SAVEFILE_NAME +dtf.format(now)+FILE_EXT;
 
             //Create file
             File file = new File(fileName);
@@ -46,7 +46,7 @@ public class PersistenceDataService {
 
                 //write game data
                 FileWriter fileWriter = new FileWriter(fileName);
-                fileWriter.write(gameToSave.toString());
+                fileWriter.write(gameToSave.toJSON().toString());
                 fileWriter.close();
                 return true;
             }
@@ -97,7 +97,7 @@ public class PersistenceDataService {
     public static SavedGame loadGameData(String savingName) {
         try{
             //load all file in default directory
-            File saveFile = new File(FILES_BASEPATH + SAVEFILE_PATH + savingName);
+            File saveFile = new File(FILES_BASEPATH + SAVEFILE_PATH + savingName+FILE_EXT);
             Scanner reader = new Scanner(saveFile);
             String jsonData = reader.nextLine();
             reader.close();

@@ -67,7 +67,7 @@ public class SavedGame {
      */
     static public SavedGame fromJSON(JSONObject jsonObject) {
         SavedGame savedGame = new SavedGame(Board.fromJSON(jsonObject.getJSONObject("board")),GameProgress.fromJSON(jsonObject.getJSONObject("gameProgress")));
-        savedGame.gameDate = (LocalDateTime)jsonObject.get("saveDate");
+        savedGame.gameDate = LocalDateTime.parse(jsonObject.getString("saveDate"));
         return savedGame;
     }
 

@@ -55,21 +55,21 @@ public class Game {
     //    return makeMove(nextMove);
     //}
 
-    //public boolean makeMove(Move move){
-    //    if(board.move(move)){
-    //        progress.addMove(move);
-    //        return true;
-    //    }
-    //    return false;
-    //}
+    public boolean makeMove(Move move){
+        if(board.move(move)){
+            progress.addMove(move);
+            return true;
+        }
+       return false;
+    }
 
-    //public boolean undoMove(){
-    //    Move lastMove = progress.undoMove();
-    //    if(lastMove!=null){
-    //        Move invertedMove = new Move(lastMove.getBlock(), lastMove.getDest(), lastMove.getStart());
-    //        return board.move(invertedMove);
-    //    }
-    //    return false;
-    //}
+    public boolean undoMove(){
+       Move lastMove = progress.undoLastMove();
+        if(lastMove!=null){
+            Move invertedMove = new Move(lastMove.getBlock(), lastMove.getDest(), lastMove.getStart());
+            return board.move(invertedMove);
+        }
+        return false;
+    }
 
 }
