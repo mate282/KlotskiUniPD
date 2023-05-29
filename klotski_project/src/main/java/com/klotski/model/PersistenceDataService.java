@@ -209,7 +209,7 @@ public class PersistenceDataService {
             LevelSolution solution  = LevelSolution.fromJSON(solutionJSON);
             return solution;
         }
-        catch (IOException e)
+        catch (Exception e)
         {
             return null;
         }
