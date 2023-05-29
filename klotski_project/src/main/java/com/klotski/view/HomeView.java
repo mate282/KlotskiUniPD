@@ -44,7 +44,6 @@ public class HomeView {
     @FXML
     protected void onChooseConfigButtonClick() throws IOException {
         List<String> ls = gameController.loadAllConfigurations();
-        //ls.add("level1");
         cmbChoose.getItems().clear();;
         cmbChoose.getItems().addAll(ls);
         if(ls.isEmpty()) {
@@ -61,12 +60,30 @@ public class HomeView {
 
         if(gameController.startNewGame(conf)){
             KlotskiApp.navigateToGame((Stage)btnChoose.getScene().getWindow());
+            cmbChoose.hide();
         }
-
-        cmbChoose.hide();
     }
 
     @FXML
     protected void onLoadGameButtonClick() throws IOException {
+        List<String> ls = gameController.loadGameSaves();
+        cmbLoad.getItems().clear();;
+        cmbLoad.getItems().addAll(ls);
+        if(ls.isEmpty()) {
+            cmbLoad.setPromptText("No games");
+        } else {
+            cmbLoad.setPromptText("Please select game");
+            cmbLoad.show();
+        }
+    }
+
+    @FXML
+    protected void onLoadGameComboBoxClick() throws IOException {
+        String game = cmbLoad.getValue().toString();
+
+        if(gameController.startSavedGame(game)){
+            KlotskiApp.navigateToGame((Stage)btnLoad.getScene().getWindow());
+            cmbLoad.hide();
+        }
     }
 }
