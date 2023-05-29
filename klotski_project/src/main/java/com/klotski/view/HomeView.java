@@ -36,11 +36,9 @@ public class HomeView {
 
     @FXML
     protected void onStartButtonClick() throws IOException {
-        if(gameController.chooseConfiguration("level1")){
-            if(gameController.startGame()){
+            if(gameController.startNewGame("level1")){
                 KlotskiApp.navigateToGame((Stage)btnStart.getScene().getWindow());
             }
-        }
     }
 
     @FXML
@@ -60,11 +58,11 @@ public class HomeView {
     @FXML
     protected void onChooseConfigurationComboBoxClick() throws IOException {
         String conf = cmbChoose.getValue().toString();
-        if(gameController.chooseConfiguration(conf)){
-            if(gameController.startGame()){
-                KlotskiApp.navigateToGame((Stage)btnChoose.getScene().getWindow());
-            }
+
+        if(gameController.startNewGame(conf)){
+            KlotskiApp.navigateToGame((Stage)btnChoose.getScene().getWindow());
         }
+
         cmbChoose.hide();
     }
 

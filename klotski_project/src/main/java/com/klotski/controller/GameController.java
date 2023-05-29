@@ -1,6 +1,7 @@
 package com.klotski.controller;
 
 import com.klotski.model.*;
+import javafx.geometry.Point2D;
 
 import java.util.List;
 
@@ -18,7 +19,6 @@ public class GameController {
 
 
     Game game;
-    BeginningConfiguration config;
 
 
     public GameController() {
@@ -26,20 +26,28 @@ public class GameController {
     }
 
 
-    public boolean startGame() {
+    public boolean startNewGame(String configName) {
+        BeginningConfiguration config = PersistenceDataService.loadConfig(configName);
         if (!game.isGameStarted() && config!=null) {
             LevelSolution sol = PersistenceDataService.loadSolution(config);
-            if(game.startGame(config,sol)){
-                return true;
-            }
+            return game.startGame(config,sol);
         }
         return false;
     }
 
-    public boolean chooseConfiguration(String configName){
-        config = PersistenceDataService.loadConfig(configName);
-        return config!=null;
+    public boolean startSavedGame(String saveName){
+        if(!game.isGameStarted()){
+            SavedGame savedGame = PersistenceDataService.loadGameData(saveName);
+            if(savedGame!=null){
+                LevelSolution sol = PersistenceDataService.loadSolution(savedGame.getGameProgress().getBeginConf());
+                game.loadGame(savedGame,sol);
+                return true;
+            }
+        }
+
+        return false;
     }
+
 
     public List<String> loadAllConfigurations(){
         return PersistenceDataService.loadAllConfigurations();
@@ -51,6 +59,19 @@ public class GameController {
         return null;
     }
 
+
+    public List<String> loadGameSaves(){
+        return PersistenceDataService.loadAllGameData();
+    }
+
+    public boolean makeMove(Point2D start, Point2D end){
+        if(game.isGameStarted()){
+            Block block = game.getBoard().findBlockByPosition(start);
+            Move move = new Move(block,start,end);
+            return game.makeMove(move);
+        }
+        return false;
+    }
 
 
 

@@ -7,6 +7,7 @@ import com.klotski.model.Board;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
+import javafx.geometry.Point2D;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -67,6 +68,7 @@ public class GameView {
         GridPane.setValignment(rect, VPos.TOP);
         GridPane.setHalignment(rect, HPos.LEFT);
 
+        //save start position of block
         rect.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -77,56 +79,85 @@ public class GameView {
         rect.setOnDragDetected(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                double endX = mouseEvent.getX();
-                double endY = mouseEvent.getY();
-                double deltaX = endX-mouseStartX;
-                double deltaY = endY-mouseStartY;
-
-
-
-                //Check main movement direction
-                if(Math.abs(deltaX)>Math.abs(deltaY)){
-                    int index = GridPane.getColumnIndex(rect);
-                    //Move right
-                    if(deltaX>0){
-                        if(index < gridBoard.getColumnCount()){
-                            index++;
-                        }
-
-                        GridPane.setColumnIndex(rect,index);
-                    }
-                    //Move left;
-                    else{
-                        if(index > 0){
-                            index--;
-                        }
-
-                        GridPane.setColumnIndex(rect,index);
-                    }
-
-                }else{
-                    int index = GridPane.getRowIndex(rect);
-                    //Move Down
-                    if(deltaY>0){
-                        if(index < gridBoard.getRowCount()){
-                            index++;
-                        }
-                        GridPane.setRowIndex(rect,index);
-                    }
-                    //Move Up
-                    else{
-                        if(index > 0){
-                            index--;
-                        }
-
-                        GridPane.setRowIndex(rect,index);
-                    }
-                }
+               rectMovementHandler(rect,mouseEvent);
             }
         });
 
         return rect;
     }
+
+
+
+    private void rectMovementHandler(Rectangle rect, MouseEvent mouseEvent){
+        double endX = mouseEvent.getX();
+        double endY = mouseEvent.getY();
+        double deltaX = endX-mouseStartX;
+        double deltaY = endY-mouseStartY;
+
+        Point2D startPos = new Point2D(GridPane.getColumnIndex(rect),GridPane.getRowIndex(rect));
+
+
+
+        //Check main movement direction
+
+        //LEFT/RIGHT
+        if(Math.abs(deltaX)>Math.abs(deltaY)){
+            int index = GridPane.getColumnIndex(rect);
+            //Move right
+            if(deltaX>0){
+                if(index < gridBoard.getColumnCount()){
+                    index++;
+                }
+
+                Point2D endPos = new Point2D(index, startPos.getY());
+                //ask to move
+                if(gameController.makeMove(startPos,endPos)){
+                    GridPane.setColumnIndex(rect,index);
+                }
+
+
+            }
+            //Move left;
+            else{
+                if(index > 0){
+                    index--;
+                }
+                Point2D endPos = new Point2D(index, startPos.getY());
+                //ask to move
+                if(gameController.makeMove(startPos,endPos)){
+                    GridPane.setColumnIndex(rect,index);
+                }
+            }
+
+        }
+        //UP/DOWN
+        else{
+            int index = GridPane.getRowIndex(rect);
+            //Move Down
+            if(deltaY>0){
+                if(index < gridBoard.getRowCount()){
+                    index++;
+                }
+                Point2D endPos = new Point2D(startPos.getX(),index);
+                //ask to move
+                if(gameController.makeMove(startPos,endPos)) {
+                    GridPane.setRowIndex(rect, index);
+                }
+            }
+            //Move Up
+            else{
+                if(index > 0){
+                    index--;
+                }
+                Point2D endPos = new Point2D(startPos.getX(),index);
+                //ask to move
+                if(gameController.makeMove(startPos,endPos)) {
+                    GridPane.setRowIndex(rect, index);
+                }
+            }
+        }
+    }
+
 
 
 
