@@ -50,8 +50,9 @@ public class HomeView {
             cmbChoose.setPromptText("No config");
         } else {
             cmbChoose.setPromptText("Please select config");
+            cmbChoose.show();
         }
-        cmbChoose.show();
+        cmbChoose.setVisible(true);
     }
 
     @FXML
@@ -60,8 +61,9 @@ public class HomeView {
 
         if(gameController.startNewGame(conf)){
             KlotskiApp.navigateToGame((Stage)btnChoose.getScene().getWindow());
-            cmbChoose.hide();
         }
+        cmbChoose.hide();
+        cmbChoose.setVisible(false);
     }
 
     @FXML
@@ -75,6 +77,7 @@ public class HomeView {
             cmbLoad.setPromptText("Please select game");
             cmbLoad.show();
         }
+        cmbLoad.setVisible(true);
     }
 
     @FXML
@@ -83,7 +86,8 @@ public class HomeView {
 
         if(gameController.startSavedGame(game)){
             KlotskiApp.navigateToGame((Stage)btnLoad.getScene().getWindow());
-            cmbLoad.hide();
         }
+        cmbLoad.hide();
+        cmbLoad.setVisible(false);
     }
 }
