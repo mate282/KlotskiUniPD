@@ -55,7 +55,7 @@ TextField {
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: radial-gradient(radius 100%, rgb(22, 33, 188), rgb(3,22,122));
+    -fx-background-color: radial-gradient(radius 100%, rgb(44, 44, 44), rgb(25,25,25));
 }
 
 .label {
