@@ -2,6 +2,25 @@
     -fx-font-size: 20;
 }
 
+.gridBoard{
+    -fx-background-color: lightblue;
+    -fx-hgap: 3;
+    -fx-vgap: 3;
+    -fx-border-color: #FF333333;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+    -fx-background-radius: 10;
+    -fx-pref-width: 308;
+    -fx-pref-height: 383;
+}
+
+.gridBlock{
+    -fx-border-color: #FF444444;
+    -fx-border-radius: 10;
+    -fx-border-width: 5;
+    -fx-background-radius: 10;
+}
+
 
 
 

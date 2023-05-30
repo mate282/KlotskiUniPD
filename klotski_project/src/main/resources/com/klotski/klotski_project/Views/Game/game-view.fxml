@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="499.0" prefWidth="702.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.klotski.view.GameView">
+<AnchorPane prefHeight="499.0" prefWidth="702.0" stylesheets="@Style/main-style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.klotski.view.GameView">
    <children>
       <Button fx:id="btn" layoutX="20.0" layoutY="348.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="Back" />
-      <GridPane fx:id="gridBoard" alignment="CENTER" layoutX="248.0" layoutY="24.0" prefHeight="379.0" prefWidth="303.0" style="-fx-background-color: #CCCCCC;">
+      <GridPane fx:id="gridBoard" alignment="CENTER" layoutX="248.0" layoutY="24.0" styleClass="gridBoard">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="10.0" prefWidth="75.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.2" minWidth="10.0" prefWidth="74.2" />

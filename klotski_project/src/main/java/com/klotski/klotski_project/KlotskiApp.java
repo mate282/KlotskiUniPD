@@ -36,7 +36,7 @@ public class KlotskiApp extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(KlotskiApp.class.getResource("Views/Game/game-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), GameView.WINDOW_WIDTH, GameView.WINDOW_HEIGHT);
         //Load CSS
-        String mainCss = KlotskiApp.class.getResource("Views/Home/Style/main-style.css").toExternalForm();
+        String mainCss = KlotskiApp.class.getResource("Views/Game/Style/main-style.css").toExternalForm();
         scene.getStylesheets().add(mainCss);
         stage.setTitle("Klotski - Menu");
         stage.setScene(scene);
