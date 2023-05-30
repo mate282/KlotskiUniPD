@@ -356,7 +356,7 @@ public class Board {
         for(Block b : blocks){
             if (b.isMainBlock()){
                 Point2D p = new Point2D(x_win_pos,y_win_pos);
-                if(b.getPos() == p) {
+                if(b.getPos().getX() == x_win_pos && b.getPos().getY()==y_win_pos) {
                     return true;
                 }
             }

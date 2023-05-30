@@ -4,12 +4,14 @@ import com.klotski.controller.GameController;
 import com.klotski.klotski_project.KlotskiApp;
 import com.klotski.model.Block;
 import com.klotski.model.Board;
+import com.klotski.model.Observer;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.Point2D;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -23,7 +25,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 
-public class GameView {
+public class GameView implements Observer {
 
     private enum MOVEMENT{
         UP,
@@ -52,6 +54,7 @@ public class GameView {
     @FXML
     public void initialize() {
         gameController = GameController.getInstance();
+        gameController.getGameObservable().addListener(this);
         Board board = gameController.getActualBoard();
         showBoard(board.getBlocks());
     }
@@ -183,6 +186,12 @@ public class GameView {
     }
 
 
-
+    public void update(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Winning");
+        alert.setHeaderText("Congratulations");
+        alert.setContentText("You passed this level");
+        alert.showAndWait();
+    }
 
 }

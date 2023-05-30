@@ -1,6 +1,8 @@
 package com.klotski.model;
 
-public class Game {
+import java.util.ArrayList;
+
+public class Game implements Observable{
 
     static final int BOARD_HEIGHT = 5;
     static final int BOARD_WIDTH = 4;
@@ -9,6 +11,11 @@ public class Game {
     private boolean gameStarted;
     private NextBestMove helper;
 
+    ArrayList<Observer> observers;
+
+    public Game(){
+        observers=new ArrayList<Observer>(0);
+    }
 
     public boolean isGameStarted(){
         return gameStarted;
@@ -59,6 +66,9 @@ public class Game {
     public boolean makeMove(Move move){
         if(board.move(move)){
             progress.addMove(move);
+            if(board.checkWin()){
+                notifyListener();
+            }
             return true;
         }
        return false;
@@ -75,5 +85,22 @@ public class Game {
 
     public void stopGame(){
         gameStarted= false;
+    }
+
+
+
+    public void addListener(Observer obs){
+        if(!observers.contains(obs))
+            observers.add(obs);
+    }
+
+    public void removeListener(Observer obs){
+        observers.remove(obs);
+    }
+
+    public void notifyListener(){
+        for(Observer obs: observers){
+            obs.update();
+        }
     }
 }

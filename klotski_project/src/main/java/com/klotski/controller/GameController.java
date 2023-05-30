@@ -26,6 +26,9 @@ public class GameController {
     }
 
 
+    public Observable getGameObservable(){
+        return game;
+    }
 
 
     public boolean startNewGame(String configName) {
@@ -65,12 +68,9 @@ public class GameController {
         }
         return null;
     }
-
-
     public List<String> loadGameSaves(){
         return PersistenceDataService.loadAllGameData();
     }
-
     public boolean makeMove(Point2D start, Point2D end){
         if(game.isGameStarted()){
             Block block = game.getBoard().findBlockByPosition(start);
