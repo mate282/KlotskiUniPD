@@ -59,6 +59,7 @@ public class GameView {
 
     @FXML
     protected void onBackButtonClick() throws IOException {
+        gameController.stopGame();
         KlotskiApp.navigateToHome((Stage)btn.getScene().getWindow());
     }
 
@@ -97,8 +98,6 @@ public class GameView {
 
         return rect;
     }
-
-
 
     private void blockMovementHandler(Rectangle rect, MouseEvent mouseEvent){
         double endX = mouseEvent.getX();

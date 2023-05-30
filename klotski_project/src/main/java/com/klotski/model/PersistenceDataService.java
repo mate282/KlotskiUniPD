@@ -109,10 +109,15 @@ public class PersistenceDataService {
             //load all file in default directory
             File saveFile = new File(path+FILES_BASEPATH + SAVEFILE_PATH + fileName);
             Scanner reader = new Scanner(saveFile);
-            String jsonData = reader.nextLine();
+            String content = "";
+
+            while (reader.hasNextLine()){
+                content+=reader.nextLine();
+            }
+
             reader.close();
             //Load JSONObject
-            JSONObject savedGameJson = new JSONObject(jsonData);
+            JSONObject savedGameJson = new JSONObject(content);
             SavedGame savedGame = SavedGame.fromJSON(savedGameJson);
             return savedGame;
         }

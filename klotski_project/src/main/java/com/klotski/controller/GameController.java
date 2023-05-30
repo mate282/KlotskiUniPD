@@ -26,6 +26,8 @@ public class GameController {
     }
 
 
+
+
     public boolean startNewGame(String configName) {
         BeginningConfiguration config = PersistenceDataService.loadConfig(configName);
         if (!game.isGameStarted() && config!=null) {
@@ -40,13 +42,18 @@ public class GameController {
             SavedGame savedGame = PersistenceDataService.loadGameData(saveName);
             if(savedGame!=null){
                 LevelSolution sol = PersistenceDataService.loadSolution(savedGame.getGameProgress().getBeginConf());
-                game.loadGame(savedGame,sol);
-                return true;
+                return game.loadGame(savedGame,sol);
             }
         }
 
         return false;
     }
+
+    public void stopGame(){
+        game.stopGame();
+    }
+
+
 
 
     public List<String> loadAllConfigurations(){

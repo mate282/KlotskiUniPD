@@ -34,7 +34,8 @@ public class Game {
         progress = saving.getGameProgress();
         board = saving.getLastBoard();
         //helper = new Helper(solution);
-        return false;
+        gameStarted =board!=null && progress!=null;
+        return gameStarted;
     }
 
     public SavedGame savedGame(){
@@ -72,4 +73,7 @@ public class Game {
         return false;
     }
 
+    public void stopGame(){
+        gameStarted= false;
+    }
 }
