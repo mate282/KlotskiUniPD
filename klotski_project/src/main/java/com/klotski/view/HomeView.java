@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -14,6 +15,8 @@ import java.util.List;
 
 public class HomeView {
 
+    @FXML
+    private VBox vBoxHome;
     @FXML
     private Label welcomeText;
     @FXML
@@ -28,6 +31,13 @@ public class HomeView {
     private ComboBox<String> cmbLoad;
     GameController gameController;
 
+    private void resetComboBox() {
+        cmbChoose.hide();
+        cmbChoose.setVisible(false);
+        cmbLoad.hide();
+        cmbLoad.setVisible(false);
+    }
+
     @FXML
     public void initialize(){
         Scene scene = btnStart.getScene();
@@ -35,15 +45,22 @@ public class HomeView {
     }
 
     @FXML
+    protected void onVBoxHomeMouseClicked() throws IOException {
+        resetComboBox();
+    }
+
+    @FXML
     protected void onStartButtonClick() throws IOException {
-            if(gameController.startNewGame("level1")){
-                KlotskiApp.navigateToGame((Stage)btnStart.getScene().getWindow());
-            }
+        resetComboBox();
+        if(gameController.startNewGame("level1")){
+            KlotskiApp.navigateToGame((Stage)btnStart.getScene().getWindow());
+        }
     }
 
     @FXML
     protected void onChooseConfigButtonClick() throws IOException {
         List<String> ls = gameController.loadAllConfigurations();
+        resetComboBox();
         cmbChoose.getItems().clear();;
         cmbChoose.getItems().addAll(ls);
         if(ls.isEmpty()) {
@@ -62,6 +79,7 @@ public class HomeView {
         if(gameController.startNewGame(conf)){
             KlotskiApp.navigateToGame((Stage)btnChoose.getScene().getWindow());
         }
+        resetComboBox();
         cmbChoose.hide();
         cmbChoose.setVisible(false);
     }
@@ -69,6 +87,7 @@ public class HomeView {
     @FXML
     protected void onLoadGameButtonClick() throws IOException {
         List<String> ls = gameController.loadGameSaves();
+        resetComboBox();
         cmbLoad.getItems().clear();;
         cmbLoad.getItems().addAll(ls);
         if(ls.isEmpty()) {
@@ -87,6 +106,7 @@ public class HomeView {
         if(gameController.startSavedGame(game)){
             KlotskiApp.navigateToGame((Stage)btnLoad.getScene().getWindow());
         }
+        resetComboBox();
         cmbLoad.hide();
         cmbLoad.setVisible(false);
     }
