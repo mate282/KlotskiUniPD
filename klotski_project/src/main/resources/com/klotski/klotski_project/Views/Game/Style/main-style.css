@@ -1,5 +1,13 @@
+.menuButton{
+    -fx-font-size: 13;
+
+}
+
 .button{
-    -fx-font-size: 20;
+    -fx-border-color: transparent;
+}
+.menuBar{
+    -fx-pref-height: 30;
 }
 
 .gridBoard{

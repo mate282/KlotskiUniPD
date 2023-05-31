@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -8,8 +9,7 @@
 
 <AnchorPane prefHeight="499.0" prefWidth="702.0" stylesheets="@Style/main-style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.klotski.view.GameView">
    <children>
-      <Button fx:id="btn" layoutX="20.0" layoutY="348.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="Back" />
-      <GridPane fx:id="gridBoard" alignment="CENTER" layoutX="248.0" layoutY="24.0" styleClass="gridBoard">
+      <GridPane fx:id="gridBoard" alignment="CENTER" layoutX="249.0" layoutY="58.0" styleClass="gridBoard">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="10.0" prefWidth="75.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.2" minWidth="10.0" prefWidth="74.2" />
@@ -24,5 +24,13 @@
             <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
+      <ToolBar prefHeight="40.0" prefWidth="702.0" styleClass="menuBar">
+         <items>
+            <Button fx:id="btn1" mnemonicParsing="false" onAction="#onBackButtonClick" style="-fx-border-style: none;" styleClass="menuButton" text="Save" />
+            <Button fx:id="btn" mnemonicParsing="false" onAction="#onBackButtonClick" styleClass="menuButton" text="Undo" />
+            <Button fx:id="btn2" mnemonicParsing="false" onAction="#onBackButtonClick" styleClass="menuButton" text="Reset" />
+            <Button fx:id="btn21" mnemonicParsing="false" onAction="#onBackButtonClick" styleClass="menuButton" text="Back" />
+         </items>
+      </ToolBar>
    </children>
 </AnchorPane>
