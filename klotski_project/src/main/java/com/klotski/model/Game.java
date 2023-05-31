@@ -31,7 +31,12 @@ public class Game implements Observable{
 
     public boolean startGame(BeginningConfiguration config, LevelSolution solution){
         progress = new GameProgress(config);
-        board = new Board(BOARD_HEIGHT,BOARD_WIDTH,config.getBlocks());
+        ArrayList<Block> blocks = new ArrayList<Block>(0);
+        for(Block b:progress.getBeginConf().getBlocks() ){
+            blocks.add(b.clone());
+        }
+
+        board = new Board(BOARD_HEIGHT,BOARD_WIDTH,blocks);
         helper = new NextBestMove(config,solution);
         gameStarted = true;
         return gameStarted;
@@ -45,14 +50,24 @@ public class Game implements Observable{
         return gameStarted;
     }
 
-    public SavedGame savedGame(){
-        SavedGame saving = new SavedGame(board, progress);
-        return saving;
+    public SavedGame saveGame(){
+        if(gameStarted){
+            SavedGame saving = new SavedGame(board, progress);
+            return saving;
+        }
+        return null;
     }
 
     public boolean resetGame() {
         if(progress.resetProgress()) {
-            board = new Board(BOARD_HEIGHT,BOARD_WIDTH,progress.getBeginConf().getBlocks());
+
+            ArrayList<Block> blocks = new ArrayList<Block>(0);
+            for(Block b:progress.getBeginConf().getBlocks() ){
+                blocks.add(b.clone());
+            }
+
+            board = new Board(BOARD_HEIGHT,BOARD_WIDTH,blocks);
+            notifyListener(progress.getMovesCounter(),false);
             return true;
         }
         return false;
@@ -67,8 +82,9 @@ public class Game implements Observable{
         if(board.move(move)){
             progress.addMove(move);
             if(board.checkWin()){
-                notifyListener();
+                notifyListener(progress.getMovesCounter(),true);
             }
+            notifyListener(progress.getMovesCounter(),false);
             return true;
         }
        return false;
@@ -78,6 +94,7 @@ public class Game implements Observable{
        Move lastMove = progress.undoLastMove();
         if(lastMove!=null){
             Move invertedMove = new Move(lastMove.getBlock(), lastMove.getDest(), lastMove.getStart());
+            notifyListener(progress.getMovesCounter(),false);
             return board.move(invertedMove);
         }
         return false;
@@ -98,9 +115,9 @@ public class Game implements Observable{
         observers.remove(obs);
     }
 
-    public void notifyListener(){
+    public void notifyListener(int movesCounter, boolean win){
         for(Observer obs: observers){
-            obs.update();
+            obs.update(movesCounter,win);
         }
     }
 }

@@ -6,6 +6,7 @@ import com.klotski.model.Block;
 import com.klotski.model.Board;
 import com.klotski.model.Observer;
 import javafx.animation.Animation;
+import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -37,18 +39,19 @@ public class GameView implements Observer {
         LEFT,
         RIGHT
     }
-    static final int MIN_BLOCK_DIM = 75;
-    public static final int WINDOW_WIDTH = 700;
-    public static final int WINDOW_HEIGHT=500;
+
+    public static final int WINDOW_WIDTH = 750;
+    public static final int WINDOW_HEIGHT= 550;
 
     private double mouseStartX;
     private double mouseStartY;
 
 
 
-
     @FXML
-    private Button btn;
+    private Label movesCounterLbl;
+    @FXML
+    private Button backBtn;
     @FXML
     private GridPane gridBoard;
 
@@ -66,11 +69,36 @@ public class GameView implements Observer {
     @FXML
     protected void onBackButtonClick() throws IOException {
         gameController.stopGame();
-        KlotskiApp.navigateToHome((Stage)btn.getScene().getWindow());
+        KlotskiApp.navigateToHome((Stage)backBtn.getScene().getWindow());
+    }
+
+    @FXML
+    protected void onSaveButtonClick(){
+        if(gameController.saveGame())
+        {
+            //Show message of saving
+        }
+    }
+
+    @FXML
+    protected void onUndoButtonClick(){
+        if(gameController.undoMove()){
+            showBoard(gameController.getActualBoard().getBlocks());
+        }
+    }
+
+    @FXML
+    protected void onResetButtonClick(){
+        if(gameController.resetGame()){
+            showBoard(gameController.getActualBoard().getBlocks());
+        }
     }
 
 
     private void showBoard(List<Block> blockList){
+        //reset board
+        gridBoard.getChildren().clear();
+        //show actual board
         for(Block b: blockList){
             gridBoard.add(setPaneBlock(b),(int)b.getPos().getX(), (int)b.getPos().getY());
         }
@@ -79,11 +107,17 @@ public class GameView implements Observer {
     private Pane setPaneBlock(Block b){
         Pane pane = new Pane();
         pane.getStyleClass().add("gridBlock");
+
+        if(b.getDim()==1){
+            pane.getStyleClass().add("gridBlockSingle");
+        }else if(b.getDim()==2){
+            pane.getStyleClass().add("gridBlockDouble");
+        }else if(b.getDim()==4){
+            pane.getStyleClass().add("gridBlockMax");
+        }
+
         GridPane.setRowSpan(pane,b.getHeight());
         GridPane.setColumnSpan(pane,b.getWidth());
-
-
-        pane.setBackground(Background.fill(Paint.valueOf(b.getColor().toString())));
 
 
 
@@ -195,22 +229,26 @@ public class GameView implements Observer {
     }
 
 
-    public void update(){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Winning");
-        alert.setHeaderText("Congratulations");
-        alert.setContentText("You passed this level");
-        alert.showAndWait();
+    public void update(int movesCounter, boolean win){
+        movesCounterLbl.setText("Moves Counter: " + movesCounter);
+        if(win){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Winning");
+            alert.setHeaderText("Congratulations");
+            alert.setContentText("You passed this level");
+
+            alert.show();
+        }
     }
 
     private Animation setInvalidMoveAnimation(Node node){
-        TranslateTransition translateTransition = new TranslateTransition(Duration.millis(10));
-        translateTransition.setFromY(0);
-        translateTransition.setToY(10);
-        translateTransition.setNode(node);
-        translateTransition.setAutoReverse(true);
-        translateTransition.setCycleCount(6);
-        return translateTransition;
+        RotateTransition rotateTransition = new RotateTransition(Duration.millis(15));
+        rotateTransition.setFromAngle(0);
+        rotateTransition.setToAngle(15);
+        rotateTransition.setAutoReverse(true);
+        rotateTransition.setNode(node);
+        rotateTransition.setCycleCount(10);
+        return rotateTransition;
     }
 
 }

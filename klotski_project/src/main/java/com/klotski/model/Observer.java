@@ -1,5 +1,5 @@
 package com.klotski.model;
 
 public interface Observer {
-    public void update();
+    public void update(int movesCounter, boolean win);
 }

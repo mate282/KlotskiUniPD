@@ -39,7 +39,6 @@ public class GameController {
         }
         return false;
     }
-
     public boolean startSavedGame(String saveName){
         if(!game.isGameStarted()){
             SavedGame savedGame = PersistenceDataService.loadGameData(saveName);
@@ -51,11 +50,16 @@ public class GameController {
 
         return false;
     }
-
     public void stopGame(){
         game.stopGame();
     }
-
+    public boolean saveGame(){
+        if(game.isGameStarted()){
+            SavedGame save = game.saveGame();
+            return PersistenceDataService.saveGameData(save);
+        }
+        return false;
+    }
 
 
 
@@ -79,7 +83,19 @@ public class GameController {
         }
         return false;
     }
+    public boolean undoMove(){
+        if(game.isGameStarted()){
+            return game.undoMove();
+        }
+        return false;
+    }
 
+    public boolean resetGame(){
+        if(game.isGameStarted()){
+            return game.resetGame();
+        }
+        return false;
+    }
 
 
 

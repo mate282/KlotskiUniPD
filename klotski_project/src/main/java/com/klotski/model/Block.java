@@ -210,4 +210,9 @@ public class Block {
                 (p.getX() < (this.position.getX() + this.width)) &&
                 (p.getY() < (this.position.getY() + this.height)));
     }
+
+    @Override
+    public Block clone(){
+        return new Block(position,height,width,color);
+    }
 }

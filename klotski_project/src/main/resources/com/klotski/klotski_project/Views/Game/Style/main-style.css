@@ -1,34 +1,58 @@
 .menuButton{
     -fx-font-size: 13;
-
+    -fx-background-color: transparent;
+    -fx-border-color: #55505050;
+    -fx-border-width: 3;
+    -fx-text-fill: rgb(196,188,222);
+    -fx-pref-height: 20;
 }
 
 .button{
     -fx-border-color: transparent;
 }
 .menuBar{
-    -fx-pref-height: 30;
+    -fx-pref-height: 25;
+    -fx-background-color: radial-gradient(radius 100%, rgb(44, 44, 44), rgb(25,25,25));
 }
 
-.gridBoard{
-    -fx-background-color: lightblue;
-    -fx-hgap: 3;
-    -fx-vgap: 3;
-    -fx-border-color: #FF333333;
-    -fx-border-radius: 10;
-    -fx-border-width: 2;
-    -fx-background-radius: 10;
-    -fx-pref-width: 308;
-    -fx-pref-height: 383;
+.gridBlockSingle{
+    -fx-background-color: #662222;
+}
+.gridBlockDouble{
+    -fx-background-color: #226622;
+}
+.gridBlockMax{
+    -fx-background-color: #222266;
 }
 
 .gridBlock{
-    -fx-border-color: #FF444444;
+    -fx-border-color: #FF333333;
     -fx-border-radius: 10;
     -fx-border-width: 5;
     -fx-background-radius: 10;
 }
 
+.gridBoard{
+    -fx-background-color: #FF333333;
+    -fx-hgap: 5;
+    -fx-vgap: 5;
+    -fx-border-color: #FF333333;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+    -fx-background-radius: 10;
+    -fx-pref-width: 369;
+    -fx-min-width: 369;
+    -fx-min-height: 462;
+    -fx-pref-height: 462;
+}
+
+.anchorPane{
+    -fx-background-color: radial-gradient(radius 100%, rgb(44, 44, 44), rgb(30,30,30));
+}
+
+.movesCounter{
+    -fx-text-fill: rgb(196,188,222);
+}
 
 
 
