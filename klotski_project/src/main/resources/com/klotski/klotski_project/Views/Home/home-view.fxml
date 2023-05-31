@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -13,6 +14,9 @@
     <Button fx:id="btnStart" onAction="#onStartButtonClick" prefHeight="40.0" prefWidth="240.0" text="Start Game" />
    <Button fx:id="btnChoose" mnemonicParsing="false" onAction="#onChooseConfigButtonClick" prefHeight="40.0" prefWidth="240.0" text="Choose Configuration" />
    <Button fx:id="btnLoad" mnemonicParsing="false" onAction="#onLoadGameButtonClick" prefHeight="40.0" prefWidth="240.0" text="Load Game" />
-   <ComboBox fx:id="cmbChoose" onAction="#onChooseConfigurationComboBoxClick" prefHeight="26.0" prefWidth="239.0" visible="false" />
-   <ComboBox fx:id="cmbLoad" onAction="#onLoadGameComboBoxClick" prefHeight="26.0" prefWidth="239.0" visible="false" />
+   <ComboBox fx:id="cmbChoose" onAction="#onChooseConfigurationComboBoxClick" prefHeight="26.0" prefWidth="239.0" visible="false" visibleRowCount="3" />
+   <ComboBox fx:id="cmbLoad" onAction="#onLoadGameComboBoxClick" prefHeight="26.0" prefWidth="239.0" visible="false" visibleRowCount="3">
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor></ComboBox>
 </VBox>

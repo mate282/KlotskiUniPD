@@ -31,6 +31,9 @@ public class HomeView {
     private ComboBox<String> cmbLoad;
     GameController gameController;
 
+    /**
+     * Reset thet combo boxes state
+     */
     private void resetComboBox() {
         cmbChoose.hide();
         cmbChoose.setVisible(false);
@@ -38,17 +41,26 @@ public class HomeView {
         cmbLoad.setVisible(false);
     }
 
+    /**
+     * Initializer function
+     */
     @FXML
     public void initialize(){
         Scene scene = btnStart.getScene();
         gameController = GameController.getInstance();
     }
 
+    /**
+     * Method called when the home-view is clicked
+     */
     @FXML
     protected void onVBoxHomeMouseClicked() throws IOException {
         resetComboBox();
     }
 
+    /**
+     * Called when Start button is clicked
+     */
     @FXML
     protected void onStartButtonClick() throws IOException {
         resetComboBox();
@@ -57,6 +69,9 @@ public class HomeView {
         }
     }
 
+    /**
+     * Called when Choose Config button is clicked
+     */
     @FXML
     protected void onChooseConfigButtonClick() throws IOException {
         List<String> ls = gameController.loadAllConfigurations();
@@ -68,10 +83,14 @@ public class HomeView {
         } else {
             cmbChoose.setPromptText("Please select config");
             cmbChoose.show();
+            cmbChoose.setVisibleRowCount(3);
         }
         cmbChoose.setVisible(true);
     }
 
+    /**
+     * Called when an item of Choose Combo Box is clicked
+     */
     @FXML
     protected void onChooseConfigurationComboBoxClick() throws IOException {
         String conf = cmbChoose.getValue().toString();
@@ -84,6 +103,9 @@ public class HomeView {
         cmbChoose.setVisible(false);
     }
 
+    /**
+     * Called when Load Game button is clicked
+     */
     @FXML
     protected void onLoadGameButtonClick() throws IOException {
         List<String> ls = gameController.loadGameSaves();
@@ -95,10 +117,14 @@ public class HomeView {
         } else {
             cmbLoad.setPromptText("Please select game");
             cmbLoad.show();
+            cmbLoad.setVisibleRowCount(3);
         }
         cmbLoad.setVisible(true);
     }
 
+    /**
+     * Called when an item of Load Game Combo Box is clicked
+     */
     @FXML
     protected void onLoadGameComboBoxClick() throws IOException {
         String game = cmbLoad.getValue().toString();
