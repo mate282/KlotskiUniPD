@@ -5,9 +5,7 @@ import com.klotski.klotski_project.KlotskiApp;
 import com.klotski.model.Block;
 import com.klotski.model.Board;
 import com.klotski.model.Observer;
-import javafx.animation.Animation;
-import javafx.animation.RotateTransition;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
@@ -25,10 +23,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.security.Key;
+import java.security.KeyPair;
 import java.util.List;
 
 public class GameView implements Observer {
@@ -55,6 +56,7 @@ public class GameView implements Observer {
     @FXML
     private GridPane gridBoard;
 
+
     GameController gameController;
 
     @FXML
@@ -76,7 +78,12 @@ public class GameView implements Observer {
     protected void onSaveButtonClick(){
         if(gameController.saveGame())
         {
-            //Show message of saving
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Game saved");
+            alert.setHeaderText("Game saved correctly");
+            alert.setContentText("Now you can exit without loosing progress");
+
+            alert.show();
         }
     }
 
@@ -84,6 +91,9 @@ public class GameView implements Observer {
     protected void onUndoButtonClick(){
         if(gameController.undoMove()){
             showBoard(gameController.getActualBoard().getBlocks());
+        }
+        else{
+            int a = 3;
         }
     }
 
@@ -250,5 +260,7 @@ public class GameView implements Observer {
         rotateTransition.setCycleCount(10);
         return rotateTransition;
     }
+
+
 
 }

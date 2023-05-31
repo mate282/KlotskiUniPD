@@ -16,34 +16,38 @@
 }
 
 .gridBlockSingle{
-    -fx-background-color: #662222;
+    -fx-background-color: #FFAAAA;
 }
 .gridBlockDouble{
-    -fx-background-color: #226622;
+    -fx-background-color: #AAFFAA;
 }
 .gridBlockMax{
-    -fx-background-color: #222266;
+    -fx-background-color: #AAAAFF;
 }
 
 .gridBlock{
-    -fx-border-color: #FF333333;
+    -fx-border-color: #333333;
     -fx-border-radius: 10;
-    -fx-border-width: 5;
+    -fx-border-width: 2;
     -fx-background-radius: 10;
 }
 
 .gridBoard{
-    -fx-background-color: #FF333333;
+    -fx-background-color: #333333;
     -fx-hgap: 5;
     -fx-vgap: 5;
-    -fx-border-color: #FF333333;
+
+    -fx-border-color: #AAAAAA;
     -fx-border-radius: 10;
     -fx-border-width: 2;
     -fx-background-radius: 10;
+
     -fx-pref-width: 369;
     -fx-min-width: 369;
     -fx-min-height: 462;
     -fx-pref-height: 462;
+
+    -fx-padding: 3 3 3 3;
 }
 
 .anchorPane{
@@ -52,6 +56,13 @@
 
 .movesCounter{
     -fx-text-fill: rgb(196,188,222);
+}
+
+.messageBox{
+    -fx-background-color: #888888;
+    -fx-border-radius: 100;
+    -fx-border-color: #333333;
+    -fx-background-radius: 100;
 }
 
 
