@@ -213,6 +213,11 @@ public class Block {
 
     @Override
     public Block clone(){
-        return new Block(position,height,width,color);
+        return new Block(new Point2D(position.getX(), position.getY()),height,width,color);
+    }
+
+
+    public boolean equals(Block block){
+        return this.width == block.width && this.height==block.height&& this.position.distance(block.position)==0;
     }
 }

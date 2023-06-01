@@ -64,6 +64,7 @@ public class GameView implements Observer {
         gameController = GameController.getInstance();
         gameController.getGameObservable().addListener(this);
         Board board = gameController.getActualBoard();
+        movesCounterLbl.setText("Moves Counter: " + gameController.getMovesCount());
         showBoard(board.getBlocks());
     }
 

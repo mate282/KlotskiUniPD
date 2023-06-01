@@ -72,12 +72,18 @@ public class GameController {
         }
         return null;
     }
+    public int getMovesCount(){
+        if(game.isGameStarted()){
+            return game.getProgress().getMovesCounter();
+        }
+        return -1;
+    }
     public List<String> loadGameSaves(){
         return PersistenceDataService.loadAllGameData();
     }
     public boolean makeMove(Point2D start, Point2D end){
         if(game.isGameStarted()){
-            Block block = game.getBoard().findBlockByPosition(start);
+            Block block = game.getBoard().findBlockByPosition(start).clone();
             Move move = new Move(block,start,end);
             return game.makeMove(move);
         }

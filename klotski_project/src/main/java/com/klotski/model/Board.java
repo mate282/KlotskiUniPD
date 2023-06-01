@@ -335,10 +335,11 @@ public class Board {
         Point2D start = move.getStart();
         Block b = move.getBlock();
         // check if block is in start position
-        if((b != null) && (b == this.findBlockByPosition(start))) {
+        //&& (b.equals(this.findBlockByPosition(start)))
+        if((b != null) ) {
             // dest - start route must be free
             if(checkValidMove(move)) {
-                b.setPos(dest);
+                this.findBlockByPosition(start).setPos(dest);
                 return true;
             }
         }

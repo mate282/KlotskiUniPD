@@ -39,6 +39,7 @@ public class Game implements Observable{
         board = new Board(BOARD_HEIGHT,BOARD_WIDTH,blocks);
         helper = new NextBestMove(config,solution);
         gameStarted = true;
+        notifyListener(progress.getMovesCounter(),false);
         return gameStarted;
     }
 
@@ -46,7 +47,8 @@ public class Game implements Observable{
         progress = saving.getGameProgress();
         board = saving.getLastBoard();
         //helper = new Helper(solution);
-        gameStarted =board!=null && progress!=null;
+        gameStarted = board!=null && progress!=null;
+        notifyListener(progress.getMovesCounter(),false);
         return gameStarted;
     }
 
@@ -93,9 +95,11 @@ public class Game implements Observable{
     public boolean undoMove(){
        Move lastMove = progress.undoLastMove();
         if(lastMove!=null){
-            Move invertedMove = new Move(lastMove.getBlock(), lastMove.getDest(), lastMove.getStart());
-            notifyListener(progress.getMovesCounter(),false);
-            return board.move(invertedMove);
+            Move invertedMove = new Move(lastMove.getBlock().clone(), lastMove.getDest(), lastMove.getStart());
+            if(board.move(invertedMove)){
+                notifyListener(progress.getMovesCounter(),false);
+                return true;
+            }
         }
         return false;
     }
