@@ -31,7 +31,7 @@ public class Game implements Observable{
 
     public boolean startGame(BeginningConfiguration config, LevelSolution solution){
         progress = new GameProgress(config);
-        ArrayList<Block> blocks = new ArrayList<Block>(0);
+        ArrayList<Block> blocks = new ArrayList<>(0);
         for(Block b:progress.getBeginConf().getBlocks() ){
             blocks.add(b.clone());
         }
@@ -48,14 +48,14 @@ public class Game implements Observable{
         board = saving.getLastBoard();
         //helper = new Helper(solution);
         gameStarted = board!=null && progress!=null;
-        notifyListener(progress.getMovesCounter(),false);
+        if(gameStarted)
+            notifyListener(progress.getMovesCounter(),false);
         return gameStarted;
     }
 
     public SavedGame saveGame(){
         if(gameStarted){
-            SavedGame saving = new SavedGame(board, progress);
-            return saving;
+            return new SavedGame(board, progress);
         }
         return null;
     }
@@ -63,7 +63,7 @@ public class Game implements Observable{
     public boolean resetGame() {
         if(progress.resetProgress()) {
 
-            ArrayList<Block> blocks = new ArrayList<Block>(0);
+            ArrayList<Block> blocks = new ArrayList<>(0);
             for(Block b:progress.getBeginConf().getBlocks() ){
                 blocks.add(b.clone());
             }
@@ -76,7 +76,7 @@ public class Game implements Observable{
     }
 
     //public boolean getHelp(){
-    //    Move nextMove = helper.suggetMove(board);
+    //    Move nextMove = helper.suggestMove(board);
     //    return makeMove(nextMove);
     //}
 
@@ -95,7 +95,7 @@ public class Game implements Observable{
     public boolean undoMove(){
        Move lastMove = progress.undoLastMove();
         if(lastMove!=null){
-            Move invertedMove = new Move(lastMove.getBlock().clone(), lastMove.getDest(), lastMove.getStart());
+            Move invertedMove = new Move(lastMove.getBlock().clone(),lastMove.getDest(), lastMove.getStart());
             if(board.move(invertedMove)){
                 notifyListener(progress.getMovesCounter(),false);
                 return true;

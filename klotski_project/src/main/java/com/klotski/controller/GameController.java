@@ -83,8 +83,8 @@ public class GameController {
     }
     public boolean makeMove(Point2D start, Point2D end){
         if(game.isGameStarted()){
-            Block block = game.getBoard().findBlockByPosition(start).clone();
-            Move move = new Move(block,start,end);
+            Block b = game.getBoard().findBlockByPosition(start);
+            Move move = new Move(b,start,end);
             return game.makeMove(move);
         }
         return false;

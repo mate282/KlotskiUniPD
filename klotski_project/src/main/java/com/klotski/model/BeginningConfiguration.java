@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BeginningConfiguration {
-    private List<Block> blocks;
-    private String name; //configuration name
+    private final List<Block> blocks;
+    private final String name; //configuration name
 
     /**
      * Constructor
@@ -38,18 +38,7 @@ public class BeginningConfiguration {
         return this.blocks;
     }
 
-    /**
-     * Block list --> string
-     *
-     * @return Block list conversion to string
-     */
-    public String blockstoString(){
-        String out="";
-        for(int i=0; i<blocks.size(); i++){
-            out=out.concat(blocks.get(i).toString());
-        }
-        return out;
-    }
+
 
     /**
      * JSON --> BeginningConfiguration
@@ -58,7 +47,7 @@ public class BeginningConfiguration {
      */
     static public BeginningConfiguration fromJSON(JSONObject json){
         JSONArray blockArray = json.getJSONArray("blocks");
-        ArrayList<Block> blocks = new ArrayList<Block>(0);
+        ArrayList<Block> blocks = new ArrayList<>(0);
 
         for(int i = 0; i < blockArray.length();i++){
             blocks.add(Block.fromJSON(blockArray.getJSONObject(i)));

@@ -1,7 +1,6 @@
 package com.klotski.model;
 
 import javafx.geometry.Point2D;
-import javafx.scene.paint.Color;
 import org.json.JSONObject;
 
 /**
@@ -21,29 +20,15 @@ import org.json.JSONObject;
  *      width = 1                            width = 2
  */
 public class Block {
-    private final int min_dim_block = 1;
-    private final int max_dim_block = 2;
-    private final Color def_block_color = Color.LIGHTGREEN;
-    private final Color def_main_block_color = Color.RED;
+    private static final int min_dim_block = 1;
+    private static final int max_dim_block = 2;
+
 
     private Point2D position;   // block top left corner point
-    private int height;         // block height (1 or 2)
-    private int width;          // block width  (1 or 2)
-    private Color color;        // block color (black, blue, cyan...)
-    private boolean mainBlock;  // true is the main block, false otherwise
+    private final int height;         // block height (1 or 2)
+    private final int width;          // block width  (1 or 2)
+    private final boolean mainBlock;  // true is the main block, false otherwise
 
-    /**
-     * Constructor
-     * @param p top left corner point
-     * @param h block vertical height
-     * @param w block horizontal width
-     * @param c block color
-     */
-    public Block(Point2D p, int h, int w, Color c) {
-        this(p, h, w);
-        if(!(this.mainBlock))
-            this.color = c;
-    }
 
     /**
      * Constructor
@@ -58,9 +43,7 @@ public class Block {
         this.height = h;
         this.width = w;
         this.mainBlock = ((this.height == max_dim_block) && (this.width == max_dim_block));
-        this.color = def_block_color;
-        if(this.mainBlock)
-            this.color = def_main_block_color;
+
     }
 
     /**
@@ -72,15 +55,6 @@ public class Block {
      */
     public boolean isMainBlock() {
         return this.mainBlock;
-    }
-
-    /**
-     * Getter color
-     *
-     * @return block color
-     */
-    public Color getColor() {
-        return this.color;
     }
 
     /**
@@ -132,8 +106,6 @@ public class Block {
      * Setter top left corner point position
      *
      * @param p top left corner point
-     *
-     * @return None
      */
     public void setPos(Point2D p) {
         if ((p.getX() < 0) || (p.getY() < 0))
@@ -152,10 +124,12 @@ public class Block {
      * - otherwise block created from JSON
      */
     static public Block fromJSON(JSONObject json) {
-        Block b = null;
+        Block b;
         try {
-            b = new Block(new Point2D(json.getInt("pos_x"), json.getInt("pos_y")),
-                    json.getInt("height"), json.getInt("width"),Color.valueOf(json.getString("color")));
+            b = new Block(new Point2D(json.getInt("pos_x"),
+                    json.getInt("pos_y")),
+                    json.getInt("height"),
+                    json.getInt("width"));
 
         }
         catch (Exception e) {
@@ -176,7 +150,6 @@ public class Block {
         jsonObject.put("pos_y", this.position.getY());
         jsonObject.put("height", this.height);
         jsonObject.put("width", this.width);
-        jsonObject.put("color", this.color.toString());
         return jsonObject;
     }
 
@@ -188,9 +161,9 @@ public class Block {
      */
     public String toString() {
         String out = "";
-        out = out.concat(Double.toString(this.position.getX()) + " ")
-                .concat(Double.toString(this.position.getY()) + " ")
-                .concat(Integer.toString(this.height) + " ")
+        out = out.concat(this.position.getX()+ " ")
+                .concat(this.position.getY() + " ")
+                .concat(this.height + " ")
                 .concat(Integer.toString(this.width));
         return out;
     }
@@ -213,11 +186,6 @@ public class Block {
 
     @Override
     public Block clone(){
-        return new Block(new Point2D(position.getX(), position.getY()),height,width,color);
-    }
-
-
-    public boolean equals(Block block){
-        return this.width == block.width && this.height==block.height&& this.position.distance(block.position)==0;
+        return new Block(new Point2D(position.getX(), position.getY()),height,width);
     }
 }

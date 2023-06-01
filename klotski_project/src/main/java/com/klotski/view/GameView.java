@@ -8,28 +8,18 @@ import com.klotski.model.Observer;
 import javafx.animation.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.HPos;
 import javafx.geometry.Point2D;
-import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.security.Key;
-import java.security.KeyPair;
 import java.util.List;
 
 public class GameView implements Observer {
@@ -92,9 +82,6 @@ public class GameView implements Observer {
     protected void onUndoButtonClick(){
         if(gameController.undoMove()){
             showBoard(gameController.getActualBoard().getBlocks());
-        }
-        else{
-            int a = 3;
         }
     }
 
