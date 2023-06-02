@@ -17,16 +17,27 @@ import java.util.Scanner;
 
 public class PersistenceDataService {
 
+    /**Folder for game data in the user directory**/
     public static final String FILES_BASEPATH = "KlotskiGame/";
+    /**Folder for savings**/
     public static final String SAVEFILE_PATH = "Saves/";
+    /**Folder for beginning configuration in program resources**/
     public static final String CONFIGFILE_PATH = "Configurations/";
+    /**Folder for solution in program resources**/
     public static final String SOLFILE_PATH = "Solutions/";
-
+    /**Base name for savings files**/
     public static final String SAVEFILE_NAME = "saving_";
+    /**File with list of levels available**/
     public static final String LISTFILE_NAME = "levelList";
+    /**Files extension**/
     public static final String FILE_EXT = ".json";
 
+    /**Date format used for saving files**/
     public static final String DATE_FORMAT = "yyyyMMdd_HHmmss";
+
+
+
+    //SAVINGS
 
     /**
      * Save game data to persistent location.
@@ -64,7 +75,6 @@ public class PersistenceDataService {
 
     }
 
-
     /**
      * Load list of game savings
      * If there is no save return empty list
@@ -95,8 +105,7 @@ public class PersistenceDataService {
         }
     }
 
-    /***
-     * Load saved game
+    /**Load saved game
      * @param savingName saving data name
      * return saved game data*/
     public static SavedGame loadGameData(String savingName) {
@@ -127,6 +136,9 @@ public class PersistenceDataService {
         }
     }
 
+
+
+    //CONFIGURATIONS
 
     /**
      * load list of configurations available
@@ -193,6 +205,9 @@ public class PersistenceDataService {
         }
     }
 
+
+
+    //SOLUTIONS
 
     /**
      * Load solution of specified configuration
