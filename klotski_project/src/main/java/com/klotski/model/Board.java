@@ -364,4 +364,9 @@ public class Board {
         }
         return false;
     }
+
+    @Override
+    public Board clone(){
+        return new Board(height, width, blocks);
+    }
 }

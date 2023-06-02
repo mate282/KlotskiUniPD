@@ -30,22 +30,36 @@ public class testJSONSolution {
 
         ArrayList<Pair<Board, Move>> bm = new ArrayList<Pair<Board, Move>>();
         // Step 1
-        bm.add(new Pair<Board, Move>(b, new Move(new Block(new Point2D(1,3), 1,1), new Point2D(1,3), new Point2D(1,4))));
-        b.move(                         new Move(new Block(new Point2D(1,3), 1,1), new Point2D(1,3), new Point2D(1,4)));
+        bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(1,3), 1,1), new Point2D(1,3), new Point2D(1,4))));
+        b.move(                                 new Move(new Block(new Point2D(1,3), 1,1), new Point2D(1,3), new Point2D(1,4)));
         // Step 2
-        bm.add(new Pair<Board, Move>(b, new Move(new Block(new Point2D(3,4), 1,1), new Point2D(3,4), new Point2D(2,4))));
-        b.move(                         new Move(new Block(new Point2D(3,4), 1,1), new Point2D(3,4), new Point2D(2,4)));
+        bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(3,4), 1,1), new Point2D(3,4), new Point2D(2,4))));
+        b.move(                                 new Move(new Block(new Point2D(3,4), 1,1), new Point2D(3,4), new Point2D(2,4)));
         // Step 3
-        bm.add(new Pair<Board, Move>(b, new Move(new Block(new Point2D(3,2), 2,1), new Point2D(3,2), new Point2D(3,3))));
-        b.move(                         new Move(new Block(new Point2D(3,2), 2,1), new Point2D(3,2), new Point2D(3,3)));
+        bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(3,2), 2,1), new Point2D(3,2), new Point2D(3,3))));
+        b.move(                                 new Move(new Block(new Point2D(3,2), 2,1), new Point2D(3,2), new Point2D(3,3)));
         // Step 4
-        bm.add(new Pair<Board, Move>(b, new Move(new Block(new Point2D(1,2), 1,2), new Point2D(1,2), new Point2D(2,2))));
-        b.move(                         new Move(new Block(new Point2D(1,2), 1,2), new Point2D(1,2), new Point2D(2,2)));
+        bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(1,2), 1,2), new Point2D(1,2), new Point2D(2,2))));
+        b.move(                                 new Move(new Block(new Point2D(1,2), 1,2), new Point2D(1,2), new Point2D(2,2)));
+        // Step 5
+        bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(0,2), 2,1), new Point2D(0,2), new Point2D(1,2))));
+        b.move(                                 new Move(new Block(new Point2D(0,2), 2,1), new Point2D(0,2), new Point2D(1,2)));
+        // Step 6
+        bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(0,4), 1,1), new Point2D(0,4), new Point2D(0,3))));
+        b.move(                                 new Move(new Block(new Point2D(0,4), 1,1), new Point2D(0,4), new Point2D(0,3)));
+        // Step 7
+        bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(1,4), 1,1), new Point2D(1,4), new Point2D(0,4))));
+        b.move(                                 new Move(new Block(new Point2D(1,4), 1,1), new Point2D(1,4), new Point2D(0,4)));
+        // Step 8
+        bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(1,2), 2,1), new Point2D(1,2), new Point2D(1,3))));
+        b.move(                                 new Move(new Block(new Point2D(1,2), 2,1), new Point2D(1,2), new Point2D(1,3)));
+
+
 
         LevelSolution solutionToSave = new LevelSolution(bm);
         PersistenceDataService.saveSolution(solutionToSave, "level2");
         LevelSolution loadSolution = PersistenceDataService.loadSolution(config);
         JSONObject jo = loadSolution.toJSON();
-
+        LevelSolution loadSolution1 = LevelSolution.fromJSON(jo);
     }
 }
