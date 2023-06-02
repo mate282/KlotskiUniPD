@@ -220,6 +220,35 @@ public class PersistenceDataService {
         }
     }
 
+    /**
+     * Save solutions to persistent location (used only to create solution files).
+     * @param solutionToSave level solution to save
+     * @param solutionName level solution name
+     * @return save result
+     * **/
+    public static boolean saveSolution(LevelSolution solutionToSave, String solutionName) {
 
+        try{
 
+            String path = System.getProperty("user.home")+File.separator;
+            Files.createDirectories(Path.of(path+FILES_BASEPATH+SOLFILE_PATH));
+
+            //generate file name for saving : filePath+baseName+saveDate
+            String fileName = path + FILES_BASEPATH + SOLFILE_PATH + solutionName + FILE_EXT;
+
+            //Create file
+            File file = new File(fileName);
+            if(file.createNewFile()){
+                //write solution data
+                FileWriter fileWriter = new FileWriter(fileName);
+                fileWriter.write(solutionToSave.toJSON().toString());
+                fileWriter.close();
+                return true;
+            }
+            return false;
+        }
+        catch (IOException e){
+            return false;
+        }
+    }
 }
