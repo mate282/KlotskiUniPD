@@ -92,6 +92,7 @@ public class GameView implements Observer {
         }
     }
 
+    @FXML
     protected void onHelpButtonClick(){
         if(gameController.getHelp()){
             showBoard(gameController.getActualBoard().getBlocks());
