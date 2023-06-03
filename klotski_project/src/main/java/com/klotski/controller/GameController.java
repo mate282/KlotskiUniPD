@@ -34,8 +34,11 @@ public class GameController {
     public boolean startNewGame(String configName) {
         BeginningConfiguration config = PersistenceDataService.loadConfig(configName);
         if (!game.isGameStarted() && config!=null) {
+
             LevelSolution sol = PersistenceDataService.loadSolution(config);
-            return game.startGame(config,sol);
+            if(sol!=null) {
+                return game.startGame(config, sol);
+            }
         }
         return false;
     }
@@ -92,6 +95,13 @@ public class GameController {
     public boolean undoMove(){
         if(game.isGameStarted()){
             return game.undoMove();
+        }
+        return false;
+    }
+
+    public boolean getHelp(){
+        if(game.isGameStarted()){
+            return game.getHelp();
         }
         return false;
     }

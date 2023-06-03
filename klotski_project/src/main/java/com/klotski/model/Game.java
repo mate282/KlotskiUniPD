@@ -80,7 +80,7 @@ public class Game implements Observable{
         //get progess and board from saving
         progress = saving.getGameProgress();
         board = saving.getLastBoard();
-        //helper = new Helper(solution);
+        helper = new NextBestMove(solution);
         //check for correct data
         gameStarted = board!=null && progress!=null;
         //if game is started than notify all listeners
@@ -128,10 +128,10 @@ public class Game implements Observable{
     //MOVES
 
 
-    //public boolean getHelp(){
-    //    Move nextMove = helper.suggestMove(board);
-    //    return makeMove(nextMove);
-    //}
+    public boolean getHelp(){
+        Move nextMove = helper.suggestMove(board);
+        return makeMove(nextMove);
+    }
 
     /**make a move in the game
      *@param move move to do

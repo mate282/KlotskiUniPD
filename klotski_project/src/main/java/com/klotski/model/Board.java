@@ -389,6 +389,11 @@ public class Board {
 
     @Override
     public Board clone(){
-        return new Board(height, width, blocks);
+
+        ArrayList<Block> blockList = new ArrayList<>();
+        for(Block b: blocks){
+            blockList.add(b.clone());
+        }
+        return new Board(height, width, blockList);
     }
 }

@@ -92,6 +92,12 @@ public class GameView implements Observer {
         }
     }
 
+    protected void onHelpButtonClick(){
+        if(gameController.getHelp()){
+            showBoard(gameController.getActualBoard().getBlocks());
+        }
+    }
+
 
     private void showBoard(List<Block> blockList){
         //reset board
