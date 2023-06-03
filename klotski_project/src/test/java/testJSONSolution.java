@@ -66,8 +66,8 @@ public class testJSONSolution {
         bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(2,4), 1,1), new Point2D(2,4), new Point2D(2,2))));
         b.move(                                 new Move(new Block(new Point2D(2,4), 1,1), new Point2D(2,4), new Point2D(2,2)));
         // Step 12
-        bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(2,3), 2,1), new Point2D(2,3), new Point2D(3,3))));
-        b.move(                                 new Move(new Block(new Point2D(2,3), 2,1), new Point2D(2,3), new Point2D(3,3)));
+        bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(1,3), 2,1), new Point2D(1,3), new Point2D(2,3))));
+        b.move(                                 new Move(new Block(new Point2D(1,3), 2,1), new Point2D(1,3), new Point2D(2,3)));
         // Step 13
         bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(0,3), 1,1), new Point2D(0,3), new Point2D(1,3))));
         b.move(                                 new Move(new Block(new Point2D(0,3), 1,1), new Point2D(0,3), new Point2D(1,3)));
