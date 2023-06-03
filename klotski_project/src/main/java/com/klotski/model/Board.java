@@ -331,16 +331,18 @@ public class Board {
      * - false = movement is not possible, nothing is done
      */
     public boolean move(Move move){
-        Point2D dest = move.getDest();
-        Point2D start = move.getStart();
-        Block b = move.getBlock();
-        // check if block is in start position
-        //&& (b.equals(this.findBlockByPosition(start)))
-        if((b != null) ) {
-            // dest - start route must be free
-            if(checkValidMove(move)) {
-                this.findBlockByPosition(start).setPos(dest);
-                return true;
+        if(move != null) {
+            Point2D dest = move.getDest();
+            Point2D start = move.getStart();
+            Block b = move.getBlock();
+            // check if block is in start position
+            //&& (b.equals(this.findBlockByPosition(start)))
+            if ((b != null)) {
+                // dest - start route must be free
+                if (checkValidMove(move)) {
+                    this.findBlockByPosition(start).setPos(dest);
+                    return true;
+                }
             }
         }
         return false;
