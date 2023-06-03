@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class testJSONSolution {
+    // level 2
     public static void main(String[] args){
         ArrayList<Block> blocks= new ArrayList<Block>(0);
         blocks.add(new Block(new Point2D(0,0), 2,1));
@@ -53,6 +54,34 @@ public class testJSONSolution {
         // Step 8
         bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(1,2), 2,1), new Point2D(1,2), new Point2D(1,3))));
         b.move(                                 new Move(new Block(new Point2D(1,2), 2,1), new Point2D(1,2), new Point2D(1,3)));
+        // Step 9
+        bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(2,2), 1,2), new Point2D(2,2), new Point2D(0,2))));
+        b.move(                                 new Move(new Block(new Point2D(2,2), 1,2), new Point2D(2,2), new Point2D(0,2)));
+        // Step 10
+        bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(2,3), 1,1), new Point2D(2,3), new Point2D(2,2))));
+        b.move(                                 new Move(new Block(new Point2D(2,3), 1,1), new Point2D(2,3), new Point2D(2,2)));
+        bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(2,2), 1,1), new Point2D(2,2), new Point2D(3,2))));
+        b.move(                                 new Move(new Block(new Point2D(2,2), 1,1), new Point2D(2,2), new Point2D(3,2)));
+        // Step 11
+        bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(2,4), 1,1), new Point2D(2,4), new Point2D(2,2))));
+        b.move(                                 new Move(new Block(new Point2D(2,4), 1,1), new Point2D(2,4), new Point2D(2,2)));
+        // Step 12
+        bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(2,3), 2,1), new Point2D(2,3), new Point2D(3,3))));
+        b.move(                                 new Move(new Block(new Point2D(2,3), 2,1), new Point2D(2,3), new Point2D(3,3)));
+        // Step 13
+        bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(0,3), 1,1), new Point2D(0,3), new Point2D(1,3))));
+        b.move(                                 new Move(new Block(new Point2D(0,3), 1,1), new Point2D(0,3), new Point2D(1,3)));
+        bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(1,3), 1,1), new Point2D(1,3), new Point2D(1,4))));
+        b.move(                                 new Move(new Block(new Point2D(1,3), 1,1), new Point2D(1,3), new Point2D(1,4)));
+        // Step 14
+        bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(0,2), 1,2), new Point2D(0,2), new Point2D(0,3))));
+        b.move(                                 new Move(new Block(new Point2D(0,2), 1,2), new Point2D(0,2), new Point2D(0,3)));
+        // Step 15
+        bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(2,2), 1,1), new Point2D(2,2), new Point2D(0,2))));
+        b.move(                                 new Move(new Block(new Point2D(2,2), 1,1), new Point2D(2,2), new Point2D(0,2)));
+        // Step 16
+        bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(3,2), 1,1), new Point2D(3,2), new Point2D(1,2))));
+        b.move(                                 new Move(new Block(new Point2D(3,2), 1,1), new Point2D(3,2), new Point2D(1,2)));
 
 
 
