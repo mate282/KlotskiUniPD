@@ -27,6 +27,7 @@ public class NextBestMove {
      * - otherwise = move
      */
     public Move suggestMove(Board board) {
+        if(levelSolution == null) return null;
         return levelSolution.getMove(board);
     }
 }
