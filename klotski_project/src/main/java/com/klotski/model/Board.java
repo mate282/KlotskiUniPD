@@ -365,6 +365,28 @@ public class Board {
         return false;
     }
 
+    /**
+     * Verifies if the boards are ==
+     *
+     * @return
+     * - true = are equal
+     * - false = are not equal
+     */
+    public boolean equals(Board boardToCheck) {
+        boolean result = false;
+        for(Block b1 : blocks) {
+            boolean findBlock = false;
+            for (Block b2 : boardToCheck.getBlocks()) {
+                if ((b1.equals(b2)) && (!findBlock)) {
+                    findBlock = true;
+                }
+            }
+            if(!findBlock)  return false;
+            result = true;
+        }
+        return result;
+    }
+
     @Override
     public Board clone(){
         return new Board(height, width, blocks);

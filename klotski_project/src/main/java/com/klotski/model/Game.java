@@ -63,7 +63,7 @@ public class Game implements Observable{
         }
 
         board = new Board(BOARD_HEIGHT,BOARD_WIDTH,blocks);
-        helper = new NextBestMove(config,solution, board);
+        helper = new NextBestMove(solution);
         //set game started
         gameStarted = true;
         //notify listener of new status

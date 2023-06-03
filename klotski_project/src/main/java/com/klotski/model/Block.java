@@ -184,6 +184,23 @@ public class Block {
                 (p.getY() < (this.position.getY() + this.height)));
     }
 
+    /**
+     * Verifies if the block are ==
+     *
+     * @return
+     * - true = are equal
+     * - false = are not equal
+     */
+    public boolean equals(Block blockToCheck) {
+        if((height          == blockToCheck.getHeight())        &&
+           (width           == blockToCheck.getWidth())         &&
+           (position.getX() == blockToCheck.getPos().getX())    &&
+           (position.getY() == blockToCheck.getPos().getY())) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public Block clone(){
         return new Block(new Point2D(position.getX(), position.getY()),height,width);

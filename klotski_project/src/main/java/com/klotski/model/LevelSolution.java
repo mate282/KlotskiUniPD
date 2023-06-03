@@ -70,4 +70,23 @@ public class LevelSolution {
         }
         return ls;
     }
+
+    /**
+     * Return move associated at this Board
+     *
+     * @param board = actual state of board
+     *
+     * @return
+     * - null = board is not present
+     * - otherwise = move
+     */
+    public Move getMove(Board board) {
+        for (int i = 0; i < boardMovs.size(); i++){
+            Board b = boardMovs.get(i).getKey();
+            if (board.equals(b)){
+                return boardMovs.get(i).getValue();
+            }
+        }
+        return null;
+    }
 }
