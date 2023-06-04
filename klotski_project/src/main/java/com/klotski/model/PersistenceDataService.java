@@ -68,7 +68,7 @@ public class PersistenceDataService {
             }
             return false;
         }
-        catch (IOException e){
+        catch (Exception e){
             return false;
         }
 
@@ -130,7 +130,7 @@ public class PersistenceDataService {
             SavedGame savedGame = SavedGame.fromJSON(savedGameJson);
             return savedGame;
         }
-        catch (IOException e)
+        catch (Exception e)
         {
             return null;
         }
@@ -199,7 +199,7 @@ public class PersistenceDataService {
             BeginningConfiguration config = BeginningConfiguration.fromJSON(configJSON);
             return config;
         }
-        catch (IOException e)
+        catch (Exception e)
         {
             return null;
         }
@@ -229,7 +229,7 @@ public class PersistenceDataService {
             LevelSolution solution  = LevelSolution.fromJSON(solutionJSON);
             return solution;
         }
-        catch (IOException e)
+        catch (Exception e)
         {
             return null;
         }
