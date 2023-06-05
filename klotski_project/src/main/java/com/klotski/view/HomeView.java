@@ -64,7 +64,7 @@ public class HomeView {
     @FXML
     protected void onStartButtonClick() throws IOException {
         resetComboBox();
-        if(gameController.startNewGame("level1")){
+        if(gameController.startNewGame(gameController.loadAllConfigurations().get(0))){
             KlotskiApp.navigateToGame((Stage)btnStart.getScene().getWindow());
         }
     }
