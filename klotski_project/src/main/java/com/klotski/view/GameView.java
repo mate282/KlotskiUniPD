@@ -54,7 +54,7 @@ public class GameView implements Observer {
         gameController = GameController.getInstance();
         gameController.getGameObservable().addListener(this);
         Board board = gameController.getActualBoard();
-        movesCounterLbl.setText("Moves Counter: " + gameController.getMovesCount());
+        movesCounterLbl.setText(Integer.toString(gameController.getMovesCount()));
         showBoard(board.getBlocks());
     }
 
@@ -235,13 +235,12 @@ public class GameView implements Observer {
 
 
     public void update(int movesCounter, boolean win){
-        movesCounterLbl.setText("Moves Counter: " + movesCounter);
+        movesCounterLbl.setText(Integer.toString(movesCounter));
         if(win){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Winning");
             alert.setHeaderText("Congratulations");
             alert.setContentText("You passed this level");
-
             alert.show();
         }
     }

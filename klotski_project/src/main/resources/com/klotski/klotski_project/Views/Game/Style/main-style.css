@@ -1,15 +1,22 @@
 .menuButton{
     -fx-font-size: 13;
     -fx-background-color: transparent;
-    -fx-border-color: #55505050;
     -fx-border-width: 3;
+    -fx-text-fill: rgb(196,188,222);
+    -fx-pref-height: 20;
+    -fx-border-color: transparent;
+}
+.helpButton{
+    -fx-font-size: 25;
+    -fx-background-color: transparent;
+    -fx-border-color: #55505050;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
     -fx-text-fill: rgb(196,188,222);
     -fx-pref-height: 20;
 }
 
-.button{
-    -fx-border-color: transparent;
-}
+
 .menuBar{
     -fx-pref-height: 25;
     -fx-background-color: radial-gradient(radius 100%, rgb(44, 44, 44), rgb(25,25,25));
@@ -56,6 +63,7 @@
 
 .movesCounter{
     -fx-text-fill: rgb(196,188,222);
+    -fx-font-size: 25;
 }
 
 .messageBox{
