@@ -127,10 +127,16 @@ public class Game implements Observable{
 
     //MOVES
 
-
+    /**Make next best move to solve level
+     * @return true if a move is made**/
     public boolean getHelp(){
         Move nextMove = helper.suggestMove(board);
-        return makeMove(nextMove);
+        if(nextMove!=null){
+            return makeMove(nextMove);
+        }else{
+            return undoMove();
+        }
+
     }
 
     /**make a move in the game
