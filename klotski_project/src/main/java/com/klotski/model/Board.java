@@ -275,7 +275,7 @@ public class Board {
             bo = new Board(jsonObject.getInt("height"), jsonObject.getInt("width"),blocks);
         }
         catch (Exception e) {
-            throw new IllegalArgumentException("Block constructor values are wrong");
+            throw new IllegalArgumentException("Board constructor values is wrong");
         }
         return bo;
     }
@@ -379,6 +379,16 @@ public class Board {
         for(Block b1 : blocks) {
             boolean findBlock = false;
             for (Block b2 : boardToCheck.getBlocks()) {
+                if ((b1.equals(b2)) && (!findBlock)) {
+                    findBlock = true;
+                }
+            }
+            if(!findBlock)  return false;
+        }
+
+        for(Block b1 : boardToCheck.getBlocks()) {
+            boolean findBlock = false;
+            for (Block b2 : blocks) {
                 if ((b1.equals(b2)) && (!findBlock)) {
                     findBlock = true;
                 }
