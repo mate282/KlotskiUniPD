@@ -149,9 +149,22 @@ class BlockTest {
 
     @Test
     void testEquals() {
+        Block b1 = new Block(new Point2D(1,0), 1, 1);
+        Block b2 = new Block(new Point2D(1,0), 2, 1);
+        Block b3 = new Block(new Point2D(1,1), 1, 1);
+        Block b4 = new Block(new Point2D(0,0), 1, 1);
+        assertTrue(b1011.equals(b1));
+        assertFalse(b1012.equals(b1));
+        assertFalse(b1011.equals(b2));
+        assertFalse(b1011.equals(b3));
+        assertFalse(b1011.equals(b4));
+        assertFalse(b1022.equals(b1));
+        assertFalse(b0312.equals(b1));
     }
 
     @Test
     void testClone() {
+        Block b = b1011.clone();
+        assertTrue(b.equals(b1011));
     }
 }
