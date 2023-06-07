@@ -92,6 +92,14 @@ class BoardTest {
     @Test
     @DisplayName("Test move")
     void move() {
+        Move m = null;
+        assertFalse(board.move(m));
+        m = new Move(null, null, null);
+        assertFalse(board.move(m));
+        Move m1 = new Move(new Block(new Point2D(0,0), 2,1), new Point2D(0,0), new Point2D(1,0));
+        assertFalse(board.move(m1));
+        Move m2 = new Move(new Block(new Point2D(0,0), 2,1), new Point2D(0,0), new Point2D(0,2));
+        assertTrue(board.move(m2));
     }
 
     @Test
