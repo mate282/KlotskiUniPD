@@ -1,6 +1,7 @@
 package com.klotski.klotski_project;
 
 import com.klotski.view.GameView;
+import com.klotski.view.HomeView;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -8,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class KlotskiApp extends Application {
+public class KlotskiApp extends HomeView {
     @Override
     public void start(Stage stage) throws IOException {
         navigateToHome(stage);
