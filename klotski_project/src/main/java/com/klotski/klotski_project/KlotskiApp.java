@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class KlotskiApp extends HomeView {
+public class KlotskiApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         navigateToHome(stage);
