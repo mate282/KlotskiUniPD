@@ -4,9 +4,7 @@ import com.klotski.klotski_project.KlotskiApp;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
@@ -147,16 +145,18 @@ public class PersistenceDataService {
         ArrayList<String> configs = new ArrayList<String> (0);
 
         try{
-            String path = PersistenceDataService.class.getResource(CONFIGFILE_PATH+LISTFILE_NAME+FILE_EXT).getFile();
-            File file  = new File(path);
-            Scanner reader = new Scanner(file);
-            String content = "";
+            InputStreamReader inputReader = new InputStreamReader(PersistenceDataService.class.getResource(CONFIGFILE_PATH+LISTFILE_NAME+FILE_EXT).openStream());
+            BufferedReader reader = new BufferedReader(inputReader);
 
-            while (reader.hasNextLine()){
-                content+=reader.nextLine();
+            String line = reader.readLine();
+            String content="";
+            while (line!=null){
+                content+=line;
+                line = reader.readLine();
             }
 
             reader.close();
+            inputReader.close();
 
             JSONObject jsonObject = new JSONObject(content);
             JSONArray jsonArray = jsonObject.getJSONArray("levels");
@@ -184,14 +184,19 @@ public class PersistenceDataService {
                 fileName+=FILE_EXT;
             }
             //load all file in default directory
-            File file  = new File(PersistenceDataService.class.getResource(CONFIGFILE_PATH+fileName).getFile());
-            Scanner reader = new Scanner(file);
-            String content = "";
+            InputStreamReader inputReader = new InputStreamReader(PersistenceDataService.class.getResource(CONFIGFILE_PATH+fileName).openStream());
+            BufferedReader reader = new BufferedReader(inputReader);
 
-            while (reader.hasNextLine()){
-                content+=reader.nextLine();
+            String line = reader.readLine();
+            String content="";
+
+            while (line!=null){
+                content+=line;
+                line = reader.readLine();
             }
+
             reader.close();
+            inputReader.close();
 
 
             //Load JSONObject
@@ -215,14 +220,18 @@ public class PersistenceDataService {
     public static LevelSolution loadSolution(BeginningConfiguration beginConf) {
         try{
             //load all file in default directory
-            File file  = new File(PersistenceDataService.class.getResource(SOLFILE_PATH+beginConf.getName()+FILE_EXT).getFile());
-            Scanner reader = new Scanner(file);
-            String content = "";
+            InputStreamReader inputReader = new InputStreamReader(PersistenceDataService.class.getResource(SOLFILE_PATH+beginConf.getName()+FILE_EXT).openStream());
+            BufferedReader reader = new BufferedReader(inputReader);
 
-            while (reader.hasNextLine()){
-                content+=reader.nextLine();
+            String line = reader.readLine();
+            String content="";
+            while (line!=null){
+                content+=line;
+                line = reader.readLine();
             }
+
             reader.close();
+            inputReader.close();
 
             //Load JSONObject
             JSONObject solutionJSON = new JSONObject(content);
