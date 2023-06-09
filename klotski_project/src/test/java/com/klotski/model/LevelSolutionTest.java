@@ -2,6 +2,7 @@ package com.klotski.model;
 
 import javafx.geometry.Point2D;
 import javafx.util.Pair;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class LevelSolutionTest {
     Board b, b1, b2;
     LevelSolution levelSolution;
+    ArrayList<Pair<Board, Move>> bm;
 
     @BeforeEach
     void setUp() {
@@ -22,7 +24,7 @@ class LevelSolutionTest {
         b = new Board(5,4,blocks);
         b1 = b.clone();
 
-        ArrayList<Pair<Board, Move>> bm = new ArrayList<Pair<Board, Move>>();
+        bm = new ArrayList<Pair<Board, Move>>();
         // Step 1
         bm.add(new Pair<Board, Move>(b.clone(), new Move(new Block(new Point2D(1,0), 2,2), new Point2D(1,0), new Point2D(2,0))));
         b.move(                                 new Move(new Block(new Point2D(1,0), 2,2), new Point2D(1,0), new Point2D(2,0)));
@@ -36,16 +38,16 @@ class LevelSolutionTest {
     @Test
     @DisplayName("Test getBoardsMovs")
     void getBoardsMovs() {
+        assertEquals(bm.toString(), levelSolution.getBoardsMovs().toString());
     }
 
     @Test
-    @DisplayName("Test toJSON")
-    void toJSON() {
-    }
-
-    @Test
-    @DisplayName("Test fromJSON")
-    void fromJSON() {
+    @DisplayName("Test toJSON and fromJSON")
+    void fromToJSON() {
+        JSONObject jsonObject = levelSolution.toJSON();
+        LevelSolution levelSolution1 = LevelSolution.fromJSON(jsonObject);
+        assertEquals(levelSolution1.toJSON().toString(), levelSolution.toJSON().toString());
+        assertEquals(levelSolution1.toJSON().toString(), jsonObject.toString());
     }
 
     @Test
