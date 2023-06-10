@@ -146,7 +146,7 @@ public class Game implements Observable{
         //ask board to make the move
         if(board.move(move)){
             //add move to progress
-            progress.addMove(move);
+            progress.addMove(move,board.clone());
             //check for winning condition
             if(board.checkWin()){
                 //notify listener of winning

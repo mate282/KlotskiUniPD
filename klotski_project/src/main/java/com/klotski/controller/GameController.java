@@ -2,7 +2,9 @@ package com.klotski.controller;
 
 import com.klotski.model.*;
 import javafx.geometry.Point2D;
+import javafx.util.Pair;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameController {
@@ -59,6 +61,19 @@ public class GameController {
     public boolean saveGame(){
         if(game.isGameStarted()){
             SavedGame save = game.saveGame();
+
+
+            //DEBUG
+            ArrayList<Pair<Board,Move>> pairs = new ArrayList<>();
+            for(int i = 0; i < save.getGameProgress().getMovesCounter(); i++){
+                pairs.add(new Pair<Board,Move>(save.getGameProgress().getBoards().get(i),save.getGameProgress().getMoves().get(i)));
+
+            }
+            LevelSolution solution = new LevelSolution(pairs);
+            PersistenceDataService.saveSolution(solution,save.getGameProgress().getBeginConf().getName());
+
+
+
             return PersistenceDataService.saveGameData(save);
         }
         return false;
