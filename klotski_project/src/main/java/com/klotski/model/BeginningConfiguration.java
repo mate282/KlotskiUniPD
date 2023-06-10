@@ -69,4 +69,38 @@ public class BeginningConfiguration {
         jsonObject.put("blocks", jsonArray);
         return jsonObject;
     }
+
+    /**
+     * Verifies if the beginning configuration are ==
+     *
+     * @return
+     * - true = are equal
+     * - false = are not equal
+     */
+    public boolean equals(BeginningConfiguration configToCheck) {
+        boolean result = false;
+        if(!name.equals(configToCheck.getName())) result=false;
+        else{
+            for(int i=0; i<blocks.size();i++){
+                boolean find = false;
+                for(int j=0; j<configToCheck.getBlocks().size(); j++){
+                    if(blocks.get(i).equals(configToCheck.getBlocks().get(j))){
+                        find=true;
+                    }
+                }
+                if(!find) return false;
+            }
+            for(int i =0; i<configToCheck.getBlocks().size(); i++){
+                boolean find = false;
+                for(int j=0; j<blocks.size(); j++){
+                    if(configToCheck.getBlocks().get(i).equals(blocks.get(j))){
+                        find=true;
+                    }
+                }
+                if(!find) return false;
+                result=true;
+            }
+        }
+        return result;
+    }
 }
