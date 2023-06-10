@@ -48,7 +48,7 @@ public class SavedGame {
      * @return game progress
      */
     public GameProgress getGameProgress() {
-        return gameData;
+        return this.gameData;
     }
 
     /**
@@ -57,7 +57,7 @@ public class SavedGame {
      * @return save date
      */
     public LocalDateTime getSaveDate() {
-        return gameDate;
+        return this.gameDate;
     }
 
     /**
@@ -78,12 +78,10 @@ public class SavedGame {
      */
     public JSONObject toJSON(){
         JSONObject savedJSON = new JSONObject();
-        savedJSON.put("saveDate", this.gameDate);
+        savedJSON.put("saveDate", this.gameDate.toString());
         savedJSON.put("gameProgress", this.gameData.toJSON());
         savedJSON.put("board", this.lastboard.toJSON());
         return savedJSON;
     }
-
-
 
 }
