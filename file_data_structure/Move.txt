@@ -1,5 +1,0 @@
-{
-	"block" : {block}, 
-	"start" : [x,y],
-	"end" : [x,y]
-}
