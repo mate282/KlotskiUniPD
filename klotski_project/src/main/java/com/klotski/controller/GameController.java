@@ -62,18 +62,6 @@ public class GameController {
         if(game.isGameStarted()){
             SavedGame save = game.saveGame();
 
-
-            //DEBUG
-            ArrayList<Pair<Board,Move>> pairs = new ArrayList<>();
-            for(int i = 0; i < save.getGameProgress().getMovesCounter(); i++){
-                pairs.add(new Pair<Board,Move>(save.getGameProgress().getBoards().get(i),save.getGameProgress().getMoves().get(i)));
-
-            }
-            LevelSolution solution = new LevelSolution(pairs);
-            PersistenceDataService.saveSolution(solution,save.getGameProgress().getBeginConf().getName());
-
-
-
             return PersistenceDataService.saveGameData(save);
         }
         return false;

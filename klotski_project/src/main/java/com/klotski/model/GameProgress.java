@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class GameProgress {
 
     BeginningConfiguration configuration;
-    ArrayList<Board> boards; //DEBUG
+
     ArrayList<Move> moves;
 
     /**Constructor
@@ -18,9 +18,7 @@ public class GameProgress {
         this.configuration=configuration;
         moves=new ArrayList<Move>(0);
 
-        //DEBUG
-        boards = new ArrayList<>();
-        boards.add(new Board(5,4,configuration.getBlocks()));
+
     }
 
     /**returns the start configuration
@@ -53,19 +51,6 @@ public class GameProgress {
     public void addMove(Move move){
         moves.add(move);
     }
-
-    //DEBUG
-    public void addMove(Move move, Board board){
-        moves.add(move);
-        boards.add(board);
-    }
-    public ArrayList<Board> getBoards(){
-        return boards;
-    }
-    public ArrayList<Move> getMoves(){
-        return moves;
-    }
-
 
 
     /**reset game progress
