@@ -167,5 +167,6 @@ class NextBestMoveTest {
         Move m2 = new Move(new Block(new Point2D(1,3), 1,1), new Point2D(1,3), new Point2D(1,4));
         assertEquals(m1.getStart().toString(), m2.getStart().toString());
         assertEquals(m1.getDest().toString(),  m2.getDest().toString());
+        assertEquals(m1.toJSON().toString(), m2.toJSON().toString());
     }
 }
