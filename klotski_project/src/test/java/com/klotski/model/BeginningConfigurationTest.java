@@ -63,4 +63,29 @@ class BeginningConfigurationTest {
         assertTrue(s1.equals(s2));
         assertNotNull(config.toJSON());
     }
+
+    @Test
+    @DisplayName("Test equals")
+    void equals() {
+        ArrayList<Block> blocks = new ArrayList<Block>(0);
+        blocks.add(new Block(new Point2D(0, 0), 2, 1));
+        blocks.add(new Block(new Point2D(1, 0), 2, 2));
+        blocks.add(new Block(new Point2D(3, 0), 2, 1));
+        BeginningConfiguration config1 = new BeginningConfiguration("level1", blocks);
+        BeginningConfiguration config2 = new BeginningConfiguration("level2", blocks);
+        assertTrue(config1.equals(config));
+        assertTrue(config.equals(config1));
+        assertFalse(config2.equals(config));
+        assertFalse(config.equals(config2));
+
+        ArrayList<Block> blocks2= new ArrayList<Block>(0);
+        blocks2.add(new Block(new Point2D(0,0), 2,1));
+        blocks2.add(new Block(new Point2D(1,0), 2,2));
+        blocks2.add(new Block(new Point2D(3,0), 2,1));
+        blocks2.add(new Block(new Point2D(3,1), 1,1));
+        BeginningConfiguration config3 = new BeginningConfiguration("level1", blocks2);
+        assertFalse(config3.equals(config));
+        assertFalse(config.equals(config3));
+    }
 }
+
