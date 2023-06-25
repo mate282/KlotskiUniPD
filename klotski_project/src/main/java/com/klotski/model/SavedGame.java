@@ -74,6 +74,13 @@ public class SavedGame {
     /**
      * SavedGame --> JSON
      *
+     * {"saveDate":"2023-06-25T09:23:35.302030600",
+     * "gameProgress":
+     * {"moves":[{"start_x":1,"end_x":1,"start_y":3,"end_y":4,"block":{"pos_y":4,"pos_x":2,"width":1,"height":1}},..],                      --> moves list
+     * "conf":
+     * {"blocks":[{"pos_y":0,"pos_x":0,"width":1,"height":2},...{"pos_y":0,"pos_x":1,"width":2,"height":2}], "name":"level2"}},             --> 1st configuration
+     * "board":{"blocks":[{"pos_y":0,"pos_x":0,"width":1,"height":2},...{"pos_y":0,"pos_x":1,"width":2,"height":2}], "width":4,"height":5}} --> actual board
+     *
      * @return SavedGame conversion to JSON
      */
     public JSONObject toJSON(){

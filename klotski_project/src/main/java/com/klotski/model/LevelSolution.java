@@ -29,7 +29,12 @@ public class LevelSolution {
 
     /**
      * Level Solution --> JSON
-     *
+     * {"boardMovs":[
+     * {"blocks":[{"pos_y":0,"pos_x":0,"width":1,"height":1},{...},...
+     * ,{"pos_y":0,"pos_x":1,"width":2,"height":2}],"width":4,"height":5},                               --> board
+     * {"start_x":1,"end_x":1,"start_y":3,"end_y":4,"block":{"pos_y":3,"pos_x":1,"width":1,"height":1}}, --> move
+     * {"blocks":[...                                                                                    --> board/move couples series
+     * ]}
      * @return Level Solution conversion to JSON
      */
     public JSONObject toJSON(){

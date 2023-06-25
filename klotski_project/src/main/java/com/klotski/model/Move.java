@@ -37,6 +37,13 @@ public class Move {
         destPos=dest;
     }
 
+    /**
+     * Move --> JSON
+     * start point + end point + block to move
+     * {"start_x":2,"end_x":2,"start_y":3,"end_y":4,"block":{"pos_y":3,"pos_x":2,"width":1,"height":1}},
+     *
+     * @return Board conversion to JSON
+     */
     public JSONObject toJSON(){
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("block",block.toJSON());
@@ -47,6 +54,13 @@ public class Move {
         return jsonObject;
     }
 
+    /**
+     * JSON --> Move
+     *
+     * @param jsonObject with move data
+     *
+     * @return move created from JSON
+     */
     public static Move fromJSON(JSONObject jsonObject){
         Block b=Block.fromJSON(jsonObject.getJSONObject("block"));
         double start_x=jsonObject.getDouble("start_x");
